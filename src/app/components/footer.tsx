@@ -37,7 +37,7 @@ export default function Footer(): JSX.Element {
 					<div className="space-y-3">
 						<h3 className="text-sm font-medium">Contact</h3>
 						<address className="not-italic text-sm text-white/80">
-							<a href="mailto:farmDirect123@.com" className="hover:underline">farmDirect123@.com</a>
+							<a href="mailto:hello@farmdirect.in" className="hover:underline">hello@farmdirect.in</a>
 							<br />
 							<a href="tel:067-545672" className="hover:underline">067-545672</a>
 						</address>

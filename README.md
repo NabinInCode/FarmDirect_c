@@ -1,36 +1,136 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FarmDirect
+
+A farm-to-customer e-commerce platform. Customers can browse fresh produce from local
+farmers, order with cash-on-delivery or **eSewa** (Nepal's digital wallet) payment,
+and farmers can manage their products and orders from their dashboard.
+
+## Tech Stack
+
+- **Next.js 16 (App Router, Turbopack)** — React 19, server components
+- **Prisma + PostgreSQL** — ORM and database (works on Vercel serverless)
+- **Tailwind CSS 4** — styling
+- **eSewa ePay v2** — sandbox payment integration (redirect flow)
+- **Vercel Blob** — product image uploads (local filesystem in dev)
+- **bcryptjs** — password hashing
+
+## Database (required: PostgreSQL)
+
+Vercel functions have an ephemeral filesystem, so SQLite cannot be used in production.
+The app requires a hosted PostgreSQL database. The easiest free option is **Neon**
+(also available under Vercel → Storage → "Neon").
+
+1. Create a free Neon project and copy the connection string (with `?sslmode=require`).
+2. Put it in `.env`:
+
+   ```bash
+   DATABASE_URL="postgresql://USER:PASSWORD@ep-XXXX.region.aws.neon.tech/farmdirect?sslmode=require"
+   ```
 
 ## Getting Started
 
-First, run the development server:
+Prerequisites: Node.js 20+ and a PostgreSQL connection string.
 
 ```bash
+# 1. Install dependencies
+npm install
+
+# 2. Copy the env template and set DATABASE_URL
+cp .env.example .env        # Windows: copy .env.example .env
+
+# 3. Apply migrations + seed demo data
+npx prisma migrate deploy
+npx prisma db seed
+
+# 4. Start the dev server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Demo Accounts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+All accounts share the password `changeme123`.
 
-## Learn More
+| Role     | Email                  | What you can do                                   |
+| -------- | ---------------------- | ------------------------------------------------ |
+| Customer | `demo@farmdirect.in`   | Browse, review, cart, checkout (COD or eSewa)    |
+| Farmer   | `ramesh@farmdirect.in` | Dashboard: manage products, orders, messages     |
+| Farmer   | `sunita@farmdirect.in` | Second farmer (multi-vendor demo)                |
+| Admin    | `admin@farmdirect.in`  | Admin dashboard: approve/all products, all orders |
 
-To learn more about Next.js, take a look at the following resources:
+## eSewa Sandbox (test payments)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The app runs in **eSewa test mode** by default (see `.env`). Config:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+ESEWA_MERCHANT_CODE=EPAYTEST
+ESEWA_SECRET_KEY=8gBm/:&EnhH.1/q
+ESEWA_TEST_MODE=true
+```
+
+To complete a sandbox payment at checkout:
+
+1. Choose **eSewa** at checkout — you'll be redirected to the sandbox.
+2. Log in with any test user, e.g. ID `9806800001`, password `Nepal@123`.
+3. Enter MPIN `1122` and the SMS/verification token `123456`.
+4. Complete the payment and you'll be redirected back; the order is marked CONFIRMED
+   once FarmDirect verifies the transaction with eSewa's status API.
+
+Note: the eSewa login page is hosted by eSewa, so its CAPTCHA cannot be removed.
+
+## Forgot Password (demo mode)
+
+No email service is configured, so the reset link is **logged to the server console**
+(and shown inline on the page). Visit `/forgot-password`, enter your email, click the
+generated link, and set a new password. Links expire after 1 hour.
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Push this repository to GitHub.
+2. In Vercel → **New Project**, import the repo (framework is auto-detected as Next.js).
+3. Add the environment variables under **Settings → Environment Variables**:
+   - `DATABASE_URL` — your Neon/Postgres connection string
+   - `SESSION_SECRET` — long random string (`node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"`)
+   - `ESEWA_MERCHANT_CODE=EPAYTEST`, `ESEWA_SECRET_KEY=8gBm/:&EnhH.1/q`, `ESEWA_TEST_MODE=true`
+   - `BLOB_READ_WRITE_TOKEN` — create a **Blob store** under Vercel → Storage and copy its token (so dashboard product-image uploads work)
+4. Deploy. The build command in `vercel.json` automatically runs
+   `prisma migrate deploy` (creates tables) and `prisma db seed` (demo data)
+   before building, so the first deploy is immediately ready.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Project Structure
+
+```
+prisma/
+  schema.prisma          # Data model (User, Product, Order, Review, ...)
+  migrations/            # Baseline Postgres migration (applied by vercel.json build)
+  seed.ts                # Demo data
+src/
+  app/
+    api/                 # Route handlers (auth, products, cart, orders, eSewa, upload, ...)
+    (pages)              # App Router pages
+    components/          # Reusable + auth + product components
+  lib/
+    session.ts           # Signed session tokens (Edge-safe Web Crypto)
+    esewa.ts             # eSewa signature/payload/verify helpers
+    prisma.ts            # Prisma client singleton
+public/
+  products/              # Seeded product images
+  uploads/products/      # Dev-only: dashboard-uploaded images (prod uses Vercel Blob)
+```
+
+## Scripts
+
+```bash
+npm run dev        # Start in development
+npm run build      # prisma generate + production build
+npm run start      # Serve the production build
+npm run lint       # ESLint
+```
+
+## Notes
+
+- Product images uploaded in the dashboard go to **Vercel Blob** when
+  `BLOB_READ_WRITE_TOKEN` is set (i.e. on Vercel), otherwise to
+  `public/uploads/products/` locally.
+- Switch `ESEWA_TEST_MODE=false` and use real merchant credentials for live payments.
+- Always use a strong random `SESSION_SECRET` in production.
