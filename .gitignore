@@ -38,6 +38,9 @@ yarn-error.log*
 *.db
 *.db-journal
 
+# product image sources (kept locally only; images are served at runtime, not bundled)
+/public/products/
+
 # vercel
 .vercel
 

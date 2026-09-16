@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { JSX, useState } from "react";
+import { JSX, useState, useRef } from "react";
 import type { DashboardCategory } from "@/lib/dashboard";
 
 export interface ProductFormValues {
@@ -48,6 +48,8 @@ export default function ProductForm({
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [localPreview, setLocalPreview] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   function update<K extends keyof ProductFormValues>(key: K, value: ProductFormValues[K]) {
     setValues((v) => ({ ...v, [key]: value }));
@@ -69,6 +71,10 @@ export default function ProductForm({
     const file = e.target.files?.[0];
     if (!file) return;
 
+    // Immediately show a local preview
+    const previewUrl = URL.createObjectURL(file);
+    setLocalPreview(previewUrl);
+
     const fd = new FormData();
     fd.append("file", file);
     setUploading(true);
@@ -81,16 +87,29 @@ export default function ProductForm({
       const data = await res.json().catch(() => ({}));
       if (!res.ok) {
         setError(data?.message || "Could not upload the image. Please try again.");
+        setLocalPreview(null);
         return;
       }
       if (typeof data?.url === "string") {
         update("image", data.url);
+        // Clean up local preview after server URL is set
+        URL.revokeObjectURL(previewUrl);
+        setLocalPreview(null);
       }
     } catch {
       setError("Could not upload the image. Please try again.");
+      setLocalPreview(null);
     } finally {
       setUploading(false);
       e.target.value = "";
+    }
+  }
+
+  function handleRemoveImage() {
+    update("image", "");
+    setLocalPreview(null);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
     }
   }
 
@@ -243,38 +262,43 @@ export default function ProductForm({
             Product image <span className="text-gray-400">(optional)</span>
           </label>
 
-          {values.image ? (
+          {values.image || localPreview ? (
             <div className="mt-3 flex items-center gap-4">
-              <div className="h-24 w-24 shrink-0 overflow-hidden rounded-xl border border-gray-200 bg-gray-50">
+              <div className="relative h-32 w-32 shrink-0 overflow-hidden rounded-xl border border-gray-200 bg-gray-50">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={values.image}
+                  src={localPreview || values.image}
                   alt="Product preview"
                   className="h-full w-full object-cover"
                 />
+                {uploading && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/40">
+                    <div className="h-6 w-6 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                  </div>
+                )}
               </div>
               <div className="space-y-2">
                 <label
                   htmlFor="image-file"
                   className="inline-flex cursor-pointer items-center gap-1.5 rounded-lg border border-gray-300 px-3 py-1.5 text-sm font-medium text-gray-700 transition hover:border-[#2D6A4F] hover:text-[#2D6A4F]"
                 >
-                  Replace
+                  {uploading ? "Uploading..." : "Replace"}
                 </label>
-                <button
-                  type="button"
-                  onClick={() => update("image", "")}
-                  className="block text-sm font-medium text-red-600 transition hover:text-red-700"
-                >
-                  Remove image
-                </button>
+                {!uploading && (
+                  <button
+                    type="button"
+                    onClick={handleRemoveImage}
+                    className="block text-sm font-medium text-red-600 transition hover:text-red-700"
+                  >
+                    Remove image
+                  </button>
+                )}
               </div>
             </div>
           ) : (
             <label
               htmlFor="image-file"
-              className={`mt-3 inline-flex cursor-pointer items-center gap-2 rounded-xl border border-dashed border-gray-300 bg-gray-50 px-4 py-3 text-sm font-medium text-gray-600 transition hover:border-[#2D6A4F] hover:text-[#2D6A4F] ${
-                uploading ? "cursor-wait opacity-60" : ""
-              }`}
+              className="mt-3 inline-flex cursor-pointer items-center gap-2 rounded-xl border border-dashed border-gray-300 bg-gray-50 px-4 py-3 text-sm font-medium text-gray-600 transition hover:border-[#2D6A4F] hover:text-[#2D6A4F]"
             >
               <svg
                 className="h-5 w-5"
@@ -290,11 +314,12 @@ export default function ProductForm({
                   d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14M4 6h16M4 6v12a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2z"
                 />
               </svg>
-              {uploading ? "Uploading..." : "Choose an image from your computer"}
+              Choose an image from your computer
             </label>
           )}
 
           <input
+            ref={fileInputRef}
             id="image-file"
             type="file"
             accept="image/jpeg,image/png,image/webp,image/gif"
@@ -315,7 +340,10 @@ export default function ProductForm({
           <input
             id="image"
             value={values.image}
-            onChange={(e) => update("image", e.target.value)}
+            onChange={(e) => {
+              update("image", e.target.value);
+              setLocalPreview(null);
+            }}
             placeholder="https://... or /uploads/products/..."
             className={inputBase}
           />

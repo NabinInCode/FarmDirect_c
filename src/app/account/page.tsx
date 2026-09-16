@@ -31,7 +31,9 @@ export default async function AccountPage() {
           <dl className="border-t border-gray-100 pt-4 text-sm">
             <div className="flex justify-between py-1">
               <dt className="text-gray-500">Role</dt>
-              <dd className="font-medium text-gray-900">{user.role === "FARMER" ? "Farmer" : "Customer"}</dd>
+              <dd className="font-medium text-gray-900">
+                {user.role === "ADMIN" ? "Administrator" : user.role === "FARMER" ? "Farmer" : "Customer"}
+              </dd>
             </div>
             <div className="flex justify-between py-1">
               <dt className="text-gray-500">Orders</dt>

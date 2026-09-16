@@ -1,8 +1,5 @@
 import { NextResponse } from "next/server";
-import { randomUUID } from "node:crypto";
-import { mkdir, writeFile } from "node:fs/promises";
-import path from "node:path";
-import { put } from "@vercel/blob";
+import { prisma } from "@/lib/prisma";
 import { getCurrentUser } from "@/lib/auth";
 import { isStaff } from "@/lib/auth";
 
@@ -10,11 +7,11 @@ export const dynamic = "force-dynamic";
 
 const MAX_SIZE_BYTES = 4 * 1024 * 1024;
 
-const ALLOWED_TYPES: Record<string, string> = {
-  "image/jpeg": "jpg",
-  "image/png": "png",
-  "image/webp": "webp",
-  "image/gif": "gif",
+const ALLOWED_MIME_TYPES: Record<string, boolean> = {
+  "image/jpeg": true,
+  "image/png": true,
+  "image/webp": true,
+  "image/gif": true,
 };
 
 export async function POST(req: Request) {
@@ -38,8 +35,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ message: "Please choose an image file." }, { status: 400 });
   }
 
-  const ext = ALLOWED_TYPES[file.type];
-  if (!ext) {
+  if (!ALLOWED_MIME_TYPES[file.type]) {
     return NextResponse.json(
       { message: "Only JPG, PNG, WEBP or GIF images are allowed." },
       { status: 400 }
@@ -52,32 +48,25 @@ export async function POST(req: Request) {
     );
   }
 
-  const filename = `${Date.now()}-${randomUUID()}.${ext}`;
-
-  // On Vercel use Blob storage; locally fall back to the filesystem.
-  if (process.env.BLOB_READ_WRITE_TOKEN) {
-    try {
-      const { url } = await put(`products/${filename}`, file, {
-        access: "public",
-        addRandomSuffix: false,
-      });
-      return NextResponse.json({ url }, { status: 201 });
-    } catch {
-      return NextResponse.json(
-        { message: "Could not save the image. Please try again." },
-        { status: 500 }
-      );
-    }
-  }
-
-  const uploadDir = path.join(process.cwd(), "public", "uploads", "products");
+  const buffer = Buffer.from(await file.arrayBuffer());
 
   try {
-    await mkdir(uploadDir, { recursive: true });
-    await writeFile(path.join(uploadDir, filename), Buffer.from(await file.arrayBuffer()));
-  } catch {
-    return NextResponse.json({ message: "Could not save the image. Please try again." }, { status: 500 });
-  }
+    const record = await prisma.productImage.create({
+      data: {
+        data: buffer,
+        mimeType: file.type,
+      },
+      select: { id: true },
+    });
 
-  return NextResponse.json({ url: `/uploads/products/${filename}` }, { status: 201 });
+    return NextResponse.json(
+      { url: `/api/product-images/${record.id}` },
+      { status: 201 }
+    );
+  } catch {
+    return NextResponse.json(
+      { message: "Could not save the image. Please try again." },
+      { status: 500 }
+    );
+  }
 }

@@ -15,7 +15,7 @@ export async function generateMetadata({
   params: Promise<{ id: string }>;
 }): Promise<Metadata> {
   const { id } = await params;
-  return { title: `Order #${id.slice(0, 8)} — FarmDirect` };
+  return { title: `Order #${id.slice(0, 8)}` };
 }
 
 const statusStyles: Record<OrderStatus, { label: string; className: string }> = {

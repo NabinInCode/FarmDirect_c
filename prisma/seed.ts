@@ -37,7 +37,7 @@ const products: SeedProduct[] = [
     unit: "1 kg",
     categorySlug: "vegetables",
     stock: 80,
-    image: "/products/carrot.png",
+    image: "",
     farmerEmail: "ramesh@farmdirect.in",
   },
   {
@@ -49,7 +49,7 @@ const products: SeedProduct[] = [
     categorySlug: "vegetables",
     stock: 120,
     featured: true,
-    image: "/products/tomato.png",
+    image: "",
     farmerEmail: "ramesh@farmdirect.in",
   },
   {
@@ -61,7 +61,7 @@ const products: SeedProduct[] = [
     categorySlug: "vegetables",
     stock: 60,
     featured: true,
-    image: "/products/spinach.png",
+    image: "",
     farmerEmail: "ramesh@farmdirect.in",
   },
   {
@@ -72,7 +72,7 @@ const products: SeedProduct[] = [
     unit: "2 kg",
     categorySlug: "vegetables",
     stock: 150,
-    image: "/products/potato.png",
+    image: "",
     farmerEmail: "ramesh@farmdirect.in",
   },
   {
@@ -83,7 +83,7 @@ const products: SeedProduct[] = [
     unit: "500 g",
     categorySlug: "vegetables",
     stock: 70,
-    image: "/products/capsicum.png",
+    image: "",
     farmerEmail: "ramesh@farmdirect.in",
   },
   {
@@ -107,7 +107,7 @@ const products: SeedProduct[] = [
     categorySlug: "fruits",
     stock: 40,
     featured: true,
-    image: "/products/Mangoes.png",
+    image: "",
     farmerEmail: "ramesh@farmdirect.in",
   },
   {
@@ -118,7 +118,7 @@ const products: SeedProduct[] = [
     unit: "dozen",
     categorySlug: "fruits",
     stock: 100,
-    image: "/products/bananas.png",
+    image: "",
     farmerEmail: "sunita@farmdirect.in",
   },
   {
@@ -129,7 +129,7 @@ const products: SeedProduct[] = [
     unit: "1 kg",
     categorySlug: "fruits",
     stock: 90,
-    image: "/products/oranges.png",
+    image: "",
     farmerEmail: "ramesh@farmdirect.in",
   },
   {
@@ -141,7 +141,7 @@ const products: SeedProduct[] = [
     categorySlug: "fruits",
     stock: 35,
     featured: true,
-    image: "/products/Watermelons.png",
+    image: "",
     farmerEmail: "sunita@farmdirect.in",
   },
   {
@@ -165,7 +165,7 @@ const products: SeedProduct[] = [
     categorySlug: "dairy-eggs",
     stock: 110,
     featured: true,
-    image: "/products/eggs.png",
+    image: "",
     farmerEmail: "ramesh@farmdirect.in",
   },
   {
@@ -176,7 +176,7 @@ const products: SeedProduct[] = [
     unit: "1 L",
     categorySlug: "dairy-eggs",
     stock: 130,
-    image: "/products/milk.png",
+    image: "",
     farmerEmail: "ramesh@farmdirect.in",
   },
   {
@@ -187,7 +187,7 @@ const products: SeedProduct[] = [
     unit: "250 g",
     categorySlug: "dairy-eggs",
     stock: 45,
-    image: "/products/paneer.png",
+    image: "",
     farmerEmail: "ramesh@farmdirect.in",
   },
   // ---- Pantry & Essentials ----
@@ -200,7 +200,7 @@ const products: SeedProduct[] = [
     categorySlug: "pantry-essentials",
     stock: 40,
     featured: true,
-    image: "/products/honey.png",
+    image: "",
     farmerEmail: "sunita@farmdirect.in",
   },
   {

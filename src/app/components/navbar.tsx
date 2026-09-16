@@ -47,7 +47,7 @@ export default function Navbar(): JSX.Element {
                 <div className="flex items-center justify-between h-16">
                     <div className="flex items-center gap-2 ">
                         <Link href="/" className="flex items-center rounded-md p-2 hover:bg-[#2C6B4A]">
-                            <Image src="/logo.jpg" alt="FarmDirect logo" width={80} height={80} />
+                            <Image src="/logo.png" alt="FarmDirect logo" width={80} height={60} />
                         </Link>
                     </div>
 

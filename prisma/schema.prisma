@@ -146,3 +146,10 @@ model Review {
   @@index([productId])
   @@unique([userId, productId])
 }
+
+model ProductImage {
+  id        String   @id @default(cuid())
+  data      Bytes
+  mimeType  String
+  createdAt DateTime @default(now())
+}

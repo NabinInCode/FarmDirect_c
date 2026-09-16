@@ -9,7 +9,7 @@ export default function Footer(): JSX.Element {
 				<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 					<div className="space-y-3">
 						<Link href="/" className="flex items-center gap-3">
-							<Image src="/logo.jpg" alt="FarmDirect logo" width={64} height={64} />
+							<Image src="/logo.png" alt="FarmDirect logo" width={64} height={48} />
 							<span className="text-lg font-semibold">FarmDirect</span>
 						</Link>
 						<p className="text-sm text-white/80">Fresh produce direct from local farms.</p>

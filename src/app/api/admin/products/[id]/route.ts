@@ -5,6 +5,15 @@ import { getCurrentUser } from "@/lib/auth";
 import { isStaff } from "@/lib/auth";
 import { slugify } from "@/lib/slug";
 
+const IMAGE_API_PREFIX = "/api/product-images/";
+
+function extractImageId(url: string): string | null {
+  if (url.startsWith(IMAGE_API_PREFIX)) {
+    return url.slice(IMAGE_API_PREFIX.length);
+  }
+  return null;
+}
+
 async function findAuthorizedProduct(id: string, userId: string, role: "FARMER" | "ADMIN") {
   const product = await prisma.product.findUnique({ where: { id } });
   if (!product) return null;
@@ -83,11 +92,16 @@ export async function PATCH(req: Request, ctx: RouteContext<"/api/admin/products
   }
 
   try {
+    // If the image changed, clean up the old DB-stored image (if any).
+    const oldImageId = extractImageId(product.image);
     const updated = await prisma.product.update({
       where: { id },
       data,
       select: { id: true, name: true, slug: true, price: true, stock: true, featured: true },
     });
+    if (oldImageId && typeof body.image === "string" && body.image.trim() !== product.image) {
+      await prisma.productImage.deleteMany({ where: { id: oldImageId } });
+    }
     return NextResponse.json({ product: updated, message: "Product updated" });
   } catch {
     return NextResponse.json({ message: "Could not update the product. Please try again." }, { status: 500 });
@@ -110,9 +124,11 @@ export async function DELETE(_req: Request, ctx: RouteContext<"/api/admin/produc
   }
 
   try {
+    const imageId = extractImageId(product.image);
     await prisma.$transaction([
       prisma.cartItem.deleteMany({ where: { productId: id } }),
       prisma.product.delete({ where: { id } }),
+      ...(imageId ? [prisma.productImage.deleteMany({ where: { id: imageId } })] : []),
     ]);
     return NextResponse.json({ message: "Product deleted" });
   } catch {

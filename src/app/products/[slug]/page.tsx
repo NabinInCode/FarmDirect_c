@@ -24,7 +24,7 @@ export async function generateMetadata({
   });
   if (!product) return {};
   return {
-    title: `${product.name} — FarmDirect`,
+    title: product.name,
     description: product.description,
   };
 }

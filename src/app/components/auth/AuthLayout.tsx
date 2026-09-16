@@ -36,10 +36,10 @@ export default function AuthLayout({
                     <div className="relative space-y-8">
                         <Link href="/" className="flex items-center gap-3">
                             <Image
-                                src="/logo.jpg"
+src="/logo.png"
                                 alt="FarmDirect logo"
                                 width={44}
-                                height={44}
+                                height={33}
                                 className="rounded-lg ring-2 ring-white/10"
                             />
                             <span className="text-xl font-semibold tracking-tight">FarmDirect</span>
@@ -88,10 +88,10 @@ export default function AuthLayout({
                         aria-label="FarmDirect home"
                     >
                         <Image
-                            src="/logo.jpg"
+                            src="/logo.png"
                             alt="FarmDirect logo"
                             width={40}
-                            height={40}
+                            height={30}
                             className="rounded-lg"
                         />
                         <span className="text-lg font-semibold text-[#1B4332]">FarmDirect</span>

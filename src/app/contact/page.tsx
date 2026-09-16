@@ -3,7 +3,7 @@ import Link from "next/link";
 import ContactForm from "./ContactForm";
 
 export const metadata: Metadata = {
-  title: "Contact — FarmDirect",
+  title: "Contact",
   description:
     "Get in touch with FarmDirect. Questions about orders, products or partnerships — we'd love to hear from you.",
 };

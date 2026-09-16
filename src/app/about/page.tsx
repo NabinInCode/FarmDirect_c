@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About — FarmDirect",
+  title: "About",
   description:
     "FarmDirect connects you directly with local farmers. Fresh produce, transparent sourcing, and farm-to-home delivery.",
 };

@@ -114,7 +114,6 @@ src/
     esewa.ts             # eSewa signature/payload/verify helpers
     prisma.ts            # Prisma client singleton
 public/
-  products/              # Seeded product images
   uploads/products/      # Dev-only: dashboard-uploaded images (prod uses Vercel Blob)
 ```
 
@@ -129,8 +128,10 @@ npm run lint       # ESLint
 
 ## Notes
 
-- Product images uploaded in the dashboard go to **Vercel Blob** when
+- Seeded demo products show colored placeholders. To add a picture to any product,
+  use the Farmer dashboard → Products → Edit → "Choose an image from your computer".
+- Dashboard-uploaded images go to **Vercel Blob** when
   `BLOB_READ_WRITE_TOKEN` is set (i.e. on Vercel), otherwise to
-  `public/uploads/products/` locally.
+  `public/uploads/products/` locally — they are never bundled into the app.
 - Switch `ESEWA_TEST_MODE=false` and use real merchant credentials for live payments.
 - Always use a strong random `SESSION_SECRET` in production.
