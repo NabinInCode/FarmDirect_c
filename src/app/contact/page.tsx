@@ -16,12 +16,12 @@ const contactInfo = [
   },
   {
     title: "Phone",
-    value: "067-545672",
-    href: "tel:067-545672",
+    value: "9764554977",
+    href: "tel:9764554977",
   },
   {
     title: "Office",
-    value: "FarmDirect HQ, Pune, Maharashtra",
+    value: "FarmDirect HQ, Bagar, Pokhara, Nepal",
     href: undefined,
   },
   {

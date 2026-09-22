@@ -6,6 +6,7 @@ import { getCurrentUser } from "@/lib/auth";
 import { getOrderById } from "@/lib/orders";
 import { formatPaymentMethod, formatPrice } from "@/lib/format";
 import ProductVisual from "@/app/components/products/ProductVisual";
+import CancelOrderButton from "@/app/orders/CancelOrderButton";
 
 export const dynamic = "force-dynamic";
 
@@ -171,6 +172,9 @@ export default async function OrderConfirmationPage({
         >
           Continue shopping
         </Link>
+        {(order.status === "PENDING" || order.status === "CONFIRMED") && (
+          <CancelOrderButton orderId={order.id} />
+        )}
       </div>
     </main>
   );

@@ -39,7 +39,9 @@ export default function Footer(): JSX.Element {
 						<address className="not-italic text-sm text-emerald-100/80">
 							<a href="mailto:hello@farmdirect.in" className="transition hover:text-white">hello@farmdirect.in</a>
 							<br />
-							<a href="tel:067-545672" className="transition hover:text-white">067-545672</a>
+							<a href="tel:9764554977" className="transition hover:text-white">9764554977</a>
+							<br />
+							FarmDirectHQ, Bagar, Pokhara Nepal
 						</address>
 
 						<div className="flex space-x-3 mt-2" aria-hidden>

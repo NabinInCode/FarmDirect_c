@@ -4,6 +4,7 @@ import { getCurrentUser } from "@/lib/auth";
 import { getOrders } from "@/lib/orders";
 import { formatPaymentMethod, formatPrice } from "@/lib/format";
 import ProductVisual from "@/app/components/products/ProductVisual";
+import CancelOrderButton from "@/app/orders/CancelOrderButton";
 import { OrderStatus } from "@prisma/client";
 
 export const dynamic = "force-dynamic";
@@ -149,6 +150,12 @@ export default async function OrdersPage({
                     </p>
                   </div>
                 </div>
+
+                {(order.status === "PENDING" || order.status === "CONFIRMED") && (
+                  <div className="border-t border-line px-6 py-3">
+                    <CancelOrderButton orderId={order.id} />
+                  </div>
+                )}
               </div>
             );
           })}

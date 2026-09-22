@@ -20,9 +20,7 @@ export interface CatalogParams {
 }
 
 function productWhere(p: CatalogParams): Prisma.ProductWhereInput {
-  const where: Prisma.ProductWhereInput = {
-    farmerId: { not: null },
-  };
+  const where: Prisma.ProductWhereInput = {};
   if (p.category) {
     where.category = { slug: p.category };
   }
