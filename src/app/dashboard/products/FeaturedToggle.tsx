@@ -37,7 +37,7 @@ export default function FeaturedToggle({
       aria-pressed={featured}
       aria-label={featured ? "Unmark featured" : "Mark featured"}
       className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold transition disabled:opacity-40 ${
-        featured ? "bg-amber-500 text-white" : "bg-gray-100 text-gray-500 hover:bg-gray-200"
+        featured ? "bg-amber-500 text-white" : "bg-surface-muted text-muted-2 hover:bg-surface-muted"
       }`}
     >
       {featured ? "Featured" : "Off"}

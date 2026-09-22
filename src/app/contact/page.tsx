@@ -35,18 +35,18 @@ export default function ContactPage() {
   return (
     <main className="mx-auto min-h-[70vh] w-full max-w-7xl flex-1 px-4 py-12 sm:px-6 lg:px-8">
       <div className="mb-10">
-        <p className="text-sm font-semibold uppercase tracking-widest text-[#2D6A4F]">Get in touch</p>
-        <h1 className="mt-3 text-3xl font-bold text-gray-900 sm:text-4xl">We&apos;d love to hear from you.</h1>
-        <p className="mt-4 max-w-2xl text-gray-600">
+        <p className="text-sm font-semibold uppercase tracking-widest text-primary-bright">Get in touch</p>
+        <h1 className="mt-3 text-3xl font-bold text-ink sm:text-4xl">We&apos;d love to hear from you.</h1>
+        <p className="mt-4 max-w-2xl text-muted">
           Questions about an order, a product, farming with us or anything else — drop us a line and
           our team will get back to you within one business day.
         </p>
       </div>
 
       <div className="grid gap-8 lg:grid-cols-[1fr_380px]">
-        <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm sm:p-8">
-          <h2 className="text-xl font-semibold text-gray-900">Send us a message</h2>
-          <p className="mt-1 text-sm text-gray-500">We usually reply within a day.</p>
+        <div className="rounded-2xl border border-line bg-surface p-6 shadow-sm sm:p-8">
+          <h2 className="text-xl font-semibold text-ink">Send us a message</h2>
+          <p className="mt-1 text-sm text-muted-2">We usually reply within a day.</p>
           <div className="mt-6">
             <ContactForm />
           </div>
@@ -56,25 +56,25 @@ export default function ContactPage() {
           {contactInfo.map((info) => (
             <div
               key={info.title}
-              className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm"
+              className="rounded-2xl border border-line bg-surface p-5 shadow-sm"
             >
-              <p className="text-sm font-semibold uppercase tracking-widest text-[#2D6A4F]">
+              <p className="text-sm font-semibold uppercase tracking-widest text-primary-bright">
                 {info.title}
               </p>
               {info.href ? (
                 <a
                   href={info.href}
-                  className="mt-2 block font-semibold text-gray-900 transition hover:text-[#2D6A4F]"
+                  className="mt-2 block font-semibold text-ink transition hover:text-primary-bright"
                 >
                   {info.value}
                 </a>
               ) : (
-                <p className="mt-2 font-semibold text-gray-900">{info.value}</p>
+                <p className="mt-2 font-semibold text-ink">{info.value}</p>
               )}
             </div>
           ))}
 
-          <div className="rounded-2xl bg-[#1B4332] p-5 text-white">
+          <div className="rounded-2xl bg-primary-solid p-5 text-white">
             <p className="text-sm font-semibold uppercase tracking-widest text-emerald-200">
               Prefer to order?
             </p>

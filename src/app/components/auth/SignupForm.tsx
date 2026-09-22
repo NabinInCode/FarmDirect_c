@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import { JSX, useState, FormEvent } from "react";
 
 const inputBase =
-    "w-full rounded-xl border border-gray-200 bg-gray-50/60 py-2.5 pl-11 pr-10 text-sm text-gray-900 placeholder:text-gray-400 outline-none transition focus:border-[#2D6A4F] focus:bg-white focus:ring-2 focus:ring-[#2D6A4F]/20";
+    "w-full rounded-xl border border-line bg-surface-muted/60 py-2.5 pl-11 pr-10 text-sm text-ink placeholder:text-faint outline-none transition focus:border-primary-bright focus:bg-surface focus:ring-2 focus:ring-primary-bright/20";
 
 function passwordScore(pw: string): number {
     let score = 0;
@@ -87,7 +87,7 @@ export default function SignupForm({ redirectTo = "/account" }: { redirectTo?: s
             )}
 
             <div>
-                <label className="mb-1.5 block text-sm font-medium text-gray-700">I am joining as</label>
+                <label className="mb-1.5 block text-sm font-medium text-ink-muted">I am joining as</label>
                 <div className="grid grid-cols-2 gap-3">
                     <button
                         type="button"
@@ -95,14 +95,14 @@ export default function SignupForm({ redirectTo = "/account" }: { redirectTo?: s
                         aria-pressed={role === "CUSTOMER"}
                         className={`rounded-xl border px-4 py-3 text-left transition ${
                             role === "CUSTOMER"
-                                ? "border-[#2D6A4F] bg-[#EAF6EE] ring-2 ring-[#2D6A4F]/20"
-                                : "border-gray-200 bg-white hover:border-gray-300"
+                                ? "border-primary-bright bg-primary-softer ring-2 ring-primary-bright/20"
+                                : "border-line bg-surface hover:border-line-strong"
                         }`}
                     >
-                        <p className={`text-sm font-semibold ${role === "CUSTOMER" ? "text-[#1B4332]" : "text-gray-900"}`}>
+                        <p className={`text-sm font-semibold ${role === "CUSTOMER" ? "text-primary" : "text-ink"}`}>
                             Customer
                         </p>
-                        <p className="mt-0.5 text-xs text-gray-500">Shop fresh produce</p>
+                        <p className="mt-0.5 text-xs text-muted-2">Shop fresh produce</p>
                     </button>
                     <button
                         type="button"
@@ -110,23 +110,23 @@ export default function SignupForm({ redirectTo = "/account" }: { redirectTo?: s
                         aria-pressed={role === "FARMER"}
                         className={`rounded-xl border px-4 py-3 text-left transition ${
                             role === "FARMER"
-                                ? "border-[#2D6A4F] bg-[#EAF6EE] ring-2 ring-[#2D6A4F]/20"
-                                : "border-gray-200 bg-white hover:border-gray-300"
+                                ? "border-primary-bright bg-primary-softer ring-2 ring-primary-bright/20"
+                                : "border-line bg-surface hover:border-line-strong"
                         }`}
                     >
-                        <p className={`text-sm font-semibold ${role === "FARMER" ? "text-[#1B4332]" : "text-gray-900"}`}>
+                        <p className={`text-sm font-semibold ${role === "FARMER" ? "text-primary" : "text-ink"}`}>
                             Farmer
                         </p>
-                        <p className="mt-0.5 text-xs text-gray-500">Sell from your farm</p>
+                        <p className="mt-0.5 text-xs text-muted-2">Sell from your farm</p>
                     </button>
                 </div>
             </div>
 
             <div>
-                <label className="mb-1.5 block text-sm font-medium text-gray-700">Full name</label>
+                <label className="mb-1.5 block text-sm font-medium text-ink-muted">Full name</label>
                 <div className="relative">
                     <svg
-                        className="pointer-events-none absolute left-3.5 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400"
+                        className="pointer-events-none absolute left-3.5 top-1/2 h-5 w-5 -translate-y-1/2 text-faint"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -147,10 +147,10 @@ export default function SignupForm({ redirectTo = "/account" }: { redirectTo?: s
             </div>
 
             <div>
-                <label className="mb-1.5 block text-sm font-medium text-gray-700">Email</label>
+                <label className="mb-1.5 block text-sm font-medium text-ink-muted">Email</label>
                 <div className="relative">
                     <svg
-                        className="pointer-events-none absolute left-3.5 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400"
+                        className="pointer-events-none absolute left-3.5 top-1/2 h-5 w-5 -translate-y-1/2 text-faint"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -171,10 +171,10 @@ export default function SignupForm({ redirectTo = "/account" }: { redirectTo?: s
             </div>
 
             <div>
-                <label className="mb-1.5 block text-sm font-medium text-gray-700">Password</label>
+                <label className="mb-1.5 block text-sm font-medium text-ink-muted">Password</label>
                 <div className="relative">
                     <svg
-                        className="pointer-events-none absolute left-3.5 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400"
+                        className="pointer-events-none absolute left-3.5 top-1/2 h-5 w-5 -translate-y-1/2 text-faint"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -195,7 +195,7 @@ export default function SignupForm({ redirectTo = "/account" }: { redirectTo?: s
                         type="button"
                         onClick={() => setShowPassword((v) => !v)}
                         aria-label={showPassword ? "Hide password" : "Show password"}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 transition hover:text-gray-600"
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-faint transition hover:text-muted"
                     >
                         {showPassword ? (
                             <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} aria-hidden>
@@ -212,7 +212,7 @@ export default function SignupForm({ redirectTo = "/account" }: { redirectTo?: s
                 </div>
                 {password && (
                     <div className="mt-2">
-                        <div className="h-1.5 w-full overflow-hidden rounded-full bg-gray-100">
+                        <div className="h-1.5 w-full overflow-hidden rounded-full bg-surface-muted">
                             <div
                                 className={`h-full rounded-full transition-all ${strength.color}`}
                                 style={{ width: `${(score / 4) * 100}%` }}
@@ -226,10 +226,10 @@ export default function SignupForm({ redirectTo = "/account" }: { redirectTo?: s
             </div>
 
             <div>
-                <label className="mb-1.5 block text-sm font-medium text-gray-700">Re-enter password</label>
+                <label className="mb-1.5 block text-sm font-medium text-ink-muted">Re-enter password</label>
                 <div className="relative">
                     <svg
-                        className="pointer-events-none absolute left-3.5 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400"
+                        className="pointer-events-none absolute left-3.5 top-1/2 h-5 w-5 -translate-y-1/2 text-faint"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -250,7 +250,7 @@ export default function SignupForm({ redirectTo = "/account" }: { redirectTo?: s
                         type="button"
                         onClick={() => setShowConfirmPassword((v) => !v)}
                         aria-label={showConfirmPassword ? "Hide password" : "Show password"}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 transition hover:text-gray-600"
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-faint transition hover:text-muted"
                     >
                         {showConfirmPassword ? (
                             <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} aria-hidden>
@@ -275,19 +275,19 @@ export default function SignupForm({ redirectTo = "/account" }: { redirectTo?: s
                 )}
             </div>
 
-            <label className="flex cursor-pointer items-start gap-2.5 text-xs text-gray-500">
+            <label className="flex cursor-pointer items-start gap-2.5 text-xs text-muted-2">
                 <input
                     type="checkbox"
                     required
-                    className="mt-0.5 h-4 w-4 rounded border-gray-300 accent-[#2D6A4F]"
+                    className="mt-0.5 h-4 w-4 rounded border-line-strong accent-primary-bright"
                 />
                 <span>
                     I agree to the{" "}
-                    <a href="#" className="font-semibold text-[#2D6A4F] hover:underline">
+                    <a href="#" className="font-semibold text-primary-bright hover:underline">
                         Terms of Service
                     </a>{" "}
                     and{" "}
-                    <a href="#" className="font-semibold text-[#2D6A4F] hover:underline">
+                    <a href="#" className="font-semibold text-primary-bright hover:underline">
                         Privacy Policy
                     </a>
                 </span>

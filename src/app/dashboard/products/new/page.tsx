@@ -15,21 +15,21 @@ export default async function NewProductPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center gap-2 text-sm text-gray-500">
-        <Link href="/dashboard/products" className="hover:text-[#2D6A4F]">
+      <div className="flex items-center gap-2 text-sm text-muted-2">
+        <Link href="/dashboard/products" className="hover:text-primary-bright">
           Products
         </Link>
         <span aria-hidden>/</span>
-        <span className="truncate text-gray-900">New product</span>
+        <span className="truncate text-ink">New product</span>
       </div>
 
       <div>
-        <h1 className="text-2xl font-bold text-gray-900">New product</h1>
-        <p className="mt-1 text-sm text-gray-500">Add a fresh product to the store.</p>
+        <h1 className="text-2xl font-bold text-ink">New product</h1>
+        <p className="mt-1 text-sm text-muted-2">Add a fresh product to the store.</p>
       </div>
 
       {categories.length === 0 ? (
-        <p className="rounded-2xl border border-dashed border-gray-300 py-12 text-center text-gray-500">
+        <p className="rounded-2xl border border-dashed border-line-strong py-12 text-center text-muted-2">
           No categories exist yet. Create a category before adding products.
         </p>
       ) : (

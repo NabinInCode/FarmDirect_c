@@ -15,20 +15,20 @@ export default async function DashboardMessagesPage() {
   return (
     <div className="space-y-6">
       <div>
-        <p className="text-sm font-semibold uppercase tracking-widest text-[#2D6A4F]">Dashboard</p>
-        <h1 className="mt-1 text-2xl font-bold text-gray-900">Contact messages</h1>
-        <p className="mt-1 text-sm text-gray-500">
+        <p className="text-sm font-semibold uppercase tracking-widest text-primary-bright">Dashboard</p>
+        <h1 className="mt-1 text-2xl font-bold text-ink">Contact messages</h1>
+        <p className="mt-1 text-sm text-muted-2">
           {messages.length} message{messages.length === 1 ? "" : "s"}
           {unhandled > 0 ? ` — ${unhandled} unhandled` : ""}
         </p>
       </div>
 
       {user.role !== "ADMIN" ? (
-        <p className="rounded-2xl border border-dashed border-gray-300 py-16 text-center text-gray-500">
+        <p className="rounded-2xl border border-dashed border-line-strong py-16 text-center text-muted-2">
           Only administrators can view contact messages.
         </p>
       ) : messages.length === 0 ? (
-        <p className="rounded-2xl border border-dashed border-gray-300 py-16 text-center text-gray-500">
+        <p className="rounded-2xl border border-dashed border-line-strong py-16 text-center text-muted-2">
           No messages yet.
         </p>
       ) : (
@@ -36,17 +36,17 @@ export default async function DashboardMessagesPage() {
           {messages.map((m) => (
             <article
               key={m.id}
-              className={`rounded-2xl border bg-white p-6 shadow-sm ${
-                m.handled ? "border-gray-200" : "border-[#2D6A4F]/40"
+              className={`rounded-2xl border bg-surface p-6 shadow-sm ${
+                m.handled ? "border-line" : "border-primary-bright/40"
               }`}
             >
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div>
-                  <h2 className="font-semibold text-gray-900">{m.subject}</h2>
-                  <p className="mt-0.5 text-sm text-gray-500">
+                  <h2 className="font-semibold text-ink">{m.subject}</h2>
+                  <p className="mt-0.5 text-sm text-muted-2">
                     {m.name} · {m.email}
                   </p>
-                  <p className="mt-0.5 text-xs text-gray-400">
+                  <p className="mt-0.5 text-xs text-faint">
                     {new Date(m.createdAt).toLocaleDateString("en-IN", {
                       day: "numeric",
                       month: "short",
@@ -58,7 +58,7 @@ export default async function DashboardMessagesPage() {
                 </div>
                 <HandledToggle messageId={m.id} handled={m.handled} />
               </div>
-              <p className="mt-3 whitespace-pre-line text-sm text-gray-700">{m.message}</p>
+              <p className="mt-3 whitespace-pre-line text-sm text-ink-muted">{m.message}</p>
             </article>
           ))}
         </div>

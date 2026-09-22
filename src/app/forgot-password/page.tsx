@@ -13,18 +13,18 @@ export default function ForgotPasswordPage(): JSX.Element {
             quoteAuthor="— Priya K., FarmDirect customer"
         >
             <div>
-                <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+                <h1 className="text-2xl font-bold tracking-tight text-ink sm:text-3xl">
                     Forgot your password?
                 </h1>
-                <p className="mt-2 text-sm text-gray-500">No worries, it happens to the best of us.</p>
+                <p className="mt-2 text-sm text-muted-2">No worries, it happens to the best of us.</p>
 
                 <ForgotPasswordForm />
 
-                <p className="mt-6 text-center text-sm text-gray-600">
+                <p className="mt-6 text-center text-sm text-muted">
                     Remembered it?{" "}
                     <Link
                         href="/login"
-                        className="font-semibold text-[#2D6A4F] transition hover:text-[#1B4332] hover:underline"
+                        className="font-semibold text-primary-bright transition hover:text-primary hover:underline"
                     >
                         Back to login
                     </Link>

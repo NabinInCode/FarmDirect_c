@@ -43,12 +43,12 @@ export default async function OrdersPage({
   return (
     <main className="mx-auto min-h-[70vh] w-full max-w-4xl flex-1 px-4 py-12 sm:px-6 lg:px-8">
       <div className="mb-8">
-        <p className="text-sm font-semibold uppercase tracking-widest text-[#2D6A4F]">Order history</p>
-        <h1 className="mt-2 text-3xl font-bold text-gray-900">Your orders</h1>
+        <p className="text-sm font-semibold uppercase tracking-widest text-primary-bright">Order history</p>
+        <h1 className="mt-2 text-3xl font-bold text-ink">Your orders</h1>
       </div>
 
       {paid && (
-        <div className="mb-6 rounded-xl border border-[#2D6A4F]/40 bg-[#EAF6EE] px-4 py-3 text-sm font-medium text-[#1B4332]">
+        <div className="mb-6 rounded-xl border border-primary-bright/40 bg-primary-softer px-4 py-3 text-sm font-medium text-primary">
           Payment received. Thank you for your order!
         </div>
       )}
@@ -60,12 +60,12 @@ export default async function OrdersPage({
       )}
 
       {orders.length === 0 ? (
-        <div className="rounded-2xl border border-dashed border-gray-300 py-20 text-center">
-          <p className="text-lg font-medium text-gray-700">No orders yet</p>
-          <p className="mt-2 text-sm text-gray-500">When you place an order it will show up here.</p>
+        <div className="rounded-2xl border border-dashed border-line-strong py-20 text-center">
+          <p className="text-lg font-medium text-ink-muted">No orders yet</p>
+          <p className="mt-2 text-sm text-muted-2">When you place an order it will show up here.</p>
           <Link
             href="/products"
-            className="mt-6 inline-block rounded-xl bg-[#1B4332] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#2C6B4A]"
+            className="mt-6 inline-block rounded-xl bg-primary-solid px-6 py-3 text-sm font-semibold text-white transition hover:bg-primary-solid-light"
           >
             Shop products
           </Link>
@@ -75,16 +75,16 @@ export default async function OrdersPage({
           {orders.map((order) => {
             const status = statusStyles[order.status] ?? statusStyles.PENDING;
             return (
-              <div key={order.id} className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
-                <div className="flex flex-wrap items-center justify-between gap-3 border-b border-gray-100 bg-gray-50/60 px-6 py-4">
+              <div key={order.id} className="overflow-hidden rounded-2xl border border-line bg-surface shadow-sm">
+                <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line bg-surface-muted/60 px-6 py-4">
                   <Link
                     href={`/orders/${order.id}`}
                     className="transition hover:opacity-80"
                   >
-                    <p className="text-sm font-semibold text-gray-900">
-                      Order <span className="font-mono text-[#2D6A4F]">#{order.id.slice(0, 8)}</span>
+                    <p className="text-sm font-semibold text-ink">
+                      Order <span className="font-mono text-primary-bright">#{order.id.slice(0, 8)}</span>
                     </p>
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs text-muted-2">
                       {new Date(order.createdAt).toLocaleDateString("en-IN", {
                         day: "numeric",
                         month: "short",
@@ -97,7 +97,7 @@ export default async function OrdersPage({
                   </span>
                 </div>
 
-                <ul className="divide-y divide-gray-100">
+                <ul className="divide-y divide-line">
                   {order.items.map((item) => (
                     <li key={item.id} className="flex items-center gap-4 px-6 py-4">
                       <Link href={`/products/${item.product.slug}`} className="w-14 shrink-0 overflow-hidden rounded-lg">
@@ -110,41 +110,41 @@ export default async function OrdersPage({
                       <div className="flex-1">
                         <Link
                           href={`/products/${item.product.slug}`}
-                          className="text-sm font-medium text-gray-900 hover:text-[#2D6A4F]"
+                          className="text-sm font-medium text-ink hover:text-primary-bright"
                         >
                           {item.product.name}
                         </Link>
-                        <p className="text-xs text-gray-500">
+                        <p className="text-xs text-muted-2">
                           {item.quantity} × {formatPrice(item.price)}
                         </p>
                       </div>
-                      <p className="text-sm font-semibold text-gray-900">
+                      <p className="text-sm font-semibold text-ink">
                         {formatPrice(item.price * item.quantity)}
                       </p>
                     </li>
                   ))}
                 </ul>
 
-                <div className="grid gap-4 border-t border-gray-100 px-6 py-4 sm:grid-cols-[1fr_auto] sm:items-center">
-                  <div className="text-sm text-gray-500">
+                <div className="grid gap-4 border-t border-line px-6 py-4 sm:grid-cols-[1fr_auto] sm:items-center">
+                  <div className="text-sm text-muted-2">
                     <p>
                       {order.items.reduce((sum, item) => sum + item.quantity, 0)} item
                       {order.items.reduce((sum, item) => sum + item.quantity, 0) === 1 ? "" : "s"}
                     </p>
                     {order.address && (
-                      <p className="mt-1 max-w-md text-xs text-gray-400">Deliver to: {order.address}</p>
+                      <p className="mt-1 max-w-md text-xs text-faint">Deliver to: {order.address}</p>
                     )}
-                    {order.phone && <p className="text-xs text-gray-400">Phone: {order.phone}</p>}
-                    <p className="mt-1 text-xs font-medium text-gray-500">
+                    {order.phone && <p className="text-xs text-faint">Phone: {order.phone}</p>}
+                    <p className="mt-1 text-xs font-medium text-muted-2">
                       {formatPaymentMethod(order.paymentMethod)}
                     </p>
                   </div>
                   <div className="text-right text-sm">
-                    <p className="text-gray-500">Subtotal: {formatPrice(order.subtotal)}</p>
-                    <p className="text-gray-500">
+                    <p className="text-muted-2">Subtotal: {formatPrice(order.subtotal)}</p>
+                    <p className="text-muted-2">
                       Delivery: {order.deliveryFee === 0 ? "Free" : formatPrice(order.deliveryFee)}
                     </p>
-                    <p className="text-base font-bold text-[#1B4332]">
+                    <p className="text-base font-bold text-primary">
                       Total: {formatPrice(order.total)}
                     </p>
                   </div>

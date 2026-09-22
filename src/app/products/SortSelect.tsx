@@ -30,12 +30,12 @@ export default function SortSelect({
   }
 
   return (
-    <label className="flex items-center gap-2 text-sm text-gray-500">
+    <label className="flex items-center gap-2 text-sm text-muted-2">
       <span className="hidden sm:inline">Sort by</span>
       <select
         value={sort ?? "newest"}
         onChange={handleChange}
-        className="rounded-full border border-gray-200 bg-white py-2 pl-3 pr-8 text-sm font-medium text-gray-700 shadow-sm outline-none transition focus:border-[#2D6A4F]"
+        className="rounded-full border border-line bg-surface py-2 pl-3 pr-8 text-sm font-medium text-ink-muted shadow-sm outline-none transition focus:border-primary-bright"
       >
         {SORT_OPTIONS.map((opt) => (
           <option key={opt.value} value={opt.value}>

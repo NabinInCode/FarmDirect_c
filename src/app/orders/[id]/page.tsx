@@ -48,12 +48,12 @@ export default async function OrderConfirmationPage({
   return (
     <main className="mx-auto min-h-[70vh] w-full max-w-4xl flex-1 px-4 py-12 sm:px-6 lg:px-8">
       {paid === "1" && order.paymentMethod.toUpperCase() === "ESEWA" && (
-        <div className="mb-6 rounded-xl border border-[#2D6A4F]/40 bg-[#EAF6EE] px-4 py-3 text-sm font-medium text-[#1B4332]">
+        <div className="mb-6 rounded-xl border border-primary-bright/40 bg-primary-softer px-4 py-3 text-sm font-medium text-primary">
           Payment received via eSewa. Thank you!
         </div>
       )}
-      <section className="rounded-[2rem] bg-gradient-to-br from-[#EAF6EE] via-[#F9F7F0] to-[#D9F0E1] px-6 py-12 text-center shadow-sm sm:px-12">
-        <span className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-[#1B4332] text-white">
+      <section className="rounded-[2rem] bg-gradient-to-br from-primary-softer via-cream to-primary-soft px-6 py-12 text-center shadow-sm sm:px-12">
+        <span className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-primary-solid text-white">
           <svg
             className="h-8 w-8"
             fill="none"
@@ -69,17 +69,17 @@ export default async function OrderConfirmationPage({
             />
           </svg>
         </span>
-        <h1 className="mt-5 text-3xl font-bold text-gray-900 sm:text-4xl">
+        <h1 className="mt-5 text-3xl font-bold text-ink sm:text-4xl">
           {isFresh ? "Order placed!" : "Order details"}
         </h1>
-        <p className="mx-auto mt-3 max-w-md text-gray-600">
+        <p className="mx-auto mt-3 max-w-md text-muted">
           {isFresh
             ? `Thank you, ${user.name}. Your order is confirmed and our farmers are getting it ready.`
             : `Here's a summary of your order #${order.id.slice(0, 8)}.`}
         </p>
-        <p className="mt-4 text-sm font-medium text-gray-500">
+        <p className="mt-4 text-sm font-medium text-muted-2">
           Order{" "}
-          <span className="font-mono text-[#2D6A4F]">#{order.id.slice(0, 8)}</span> ·{" "}
+          <span className="font-mono text-primary-bright">#{order.id.slice(0, 8)}</span> ·{" "}
           {new Date(order.createdAt).toLocaleDateString("en-IN", {
             day: "numeric",
             month: "long",
@@ -89,11 +89,11 @@ export default async function OrderConfirmationPage({
         </p>
       </section>
 
-      <div className="mt-8 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
-        <div className="border-b border-gray-100 bg-gray-50/60 px-6 py-4">
-          <h2 className="text-lg font-bold text-gray-900">Items</h2>
+      <div className="mt-8 overflow-hidden rounded-2xl border border-line bg-surface shadow-sm">
+        <div className="border-b border-line bg-surface-muted/60 px-6 py-4">
+          <h2 className="text-lg font-bold text-ink">Items</h2>
         </div>
-        <ul className="divide-y divide-gray-100">
+        <ul className="divide-y divide-line">
           {order.items.map((item) => (
             <li key={item.id} className="flex items-center gap-4 px-6 py-4">
               <Link href={`/products/${item.product.slug}`} className="w-14 shrink-0 overflow-hidden rounded-lg">
@@ -106,53 +106,53 @@ export default async function OrderConfirmationPage({
               <div className="flex-1">
                 <Link
                   href={`/products/${item.product.slug}`}
-                  className="text-sm font-medium text-gray-900 hover:text-[#2D6A4F]"
+                  className="text-sm font-medium text-ink hover:text-primary-bright"
                 >
                   {item.product.name}
                 </Link>
-                <p className="text-xs text-gray-500">
+                <p className="text-xs text-muted-2">
                   {item.quantity} × {formatPrice(item.price)}
                 </p>
               </div>
-              <p className="text-sm font-semibold text-gray-900">
+              <p className="text-sm font-semibold text-ink">
                 {formatPrice(item.price * item.quantity)}
               </p>
             </li>
           ))}
         </ul>
 
-        <div className="grid gap-6 border-t border-gray-100 px-6 py-5 lg:grid-cols-[1fr_auto]">
-          <div className="text-sm text-gray-600">
+        <div className="grid gap-6 border-t border-line px-6 py-5 lg:grid-cols-[1fr_auto]">
+          <div className="text-sm text-muted">
             <div>
-              <p className="text-xs font-medium uppercase tracking-wide text-gray-400">Deliver to</p>
+              <p className="text-xs font-medium uppercase tracking-wide text-faint">Deliver to</p>
               <p className="mt-1">{order.address}</p>
             </div>
             {order.phone && (
               <div className="mt-3">
-                <p className="text-xs font-medium uppercase tracking-wide text-gray-400">Phone</p>
+                <p className="text-xs font-medium uppercase tracking-wide text-faint">Phone</p>
                 <p className="mt-1">{order.phone}</p>
               </div>
             )}
             <div className="mt-3">
-              <p className="text-xs font-medium uppercase tracking-wide text-gray-400">Payment</p>
+              <p className="text-xs font-medium uppercase tracking-wide text-faint">Payment</p>
               <p className="mt-1">{formatPaymentMethod(order.paymentMethod)}</p>
             </div>
           </div>
 
           <dl className="space-y-2 text-sm lg:text-right">
             <div className="flex justify-between gap-8">
-              <dt className="text-gray-500">Subtotal</dt>
-              <dd className="font-medium text-gray-900">{formatPrice(order.subtotal)}</dd>
+              <dt className="text-muted-2">Subtotal</dt>
+              <dd className="font-medium text-ink">{formatPrice(order.subtotal)}</dd>
             </div>
             <div className="flex justify-between gap-8">
-              <dt className="text-gray-500">Delivery</dt>
-              <dd className={`font-medium ${order.deliveryFee === 0 ? "text-[#2D6A4F]" : "text-gray-900"}`}>
+              <dt className="text-muted-2">Delivery</dt>
+              <dd className={`font-medium ${order.deliveryFee === 0 ? "text-primary-bright" : "text-ink"}`}>
                 {order.deliveryFee === 0 ? "Free" : formatPrice(order.deliveryFee)}
               </dd>
             </div>
-            <div className="flex justify-between gap-8 border-t border-gray-100 pt-2">
-              <dt className="font-semibold text-gray-900">Total</dt>
-              <dd className="text-lg font-bold text-[#1B4332]">{formatPrice(order.total)}</dd>
+            <div className="flex justify-between gap-8 border-t border-line pt-2">
+              <dt className="font-semibold text-ink">Total</dt>
+              <dd className="text-lg font-bold text-primary">{formatPrice(order.total)}</dd>
             </div>
           </dl>
         </div>
@@ -161,13 +161,13 @@ export default async function OrderConfirmationPage({
       <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
         <Link
           href="/orders"
-          className="rounded-xl bg-[#1B4332] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#2C6B4A]"
+          className="rounded-xl bg-primary-solid px-6 py-3 text-sm font-semibold text-white transition hover:bg-primary-solid-light"
         >
           View all orders
         </Link>
         <Link
           href="/products"
-          className="rounded-xl border border-[#1B4332] px-6 py-3 text-sm font-semibold text-[#1B4332] transition hover:bg-[#EAF6EE]"
+          className="rounded-xl border border-primary px-6 py-3 text-sm font-semibold text-primary transition hover:bg-primary-softer"
         >
           Continue shopping
         </Link>

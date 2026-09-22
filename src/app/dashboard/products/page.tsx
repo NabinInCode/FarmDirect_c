@@ -19,16 +19,16 @@ export default async function DashboardProductsPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <p className="text-sm font-semibold uppercase tracking-widest text-[#2D6A4F]">Dashboard</p>
-          <h1 className="mt-1 text-2xl font-bold text-gray-900">Products</h1>
-          <p className="mt-1 text-sm text-gray-500">
+          <p className="text-sm font-semibold uppercase tracking-widest text-primary-bright">Dashboard</p>
+          <h1 className="mt-1 text-2xl font-bold text-ink">Products</h1>
+          <p className="mt-1 text-sm text-muted-2">
             {products.length} product{products.length === 1 ? "" : "s"}
           </p>
         </div>
         {canCreate && (
           <Link
             href="/dashboard/products/new"
-            className="rounded-xl bg-[#1B4332] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#2C6B4A]"
+            className="rounded-xl bg-primary-solid px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-primary-solid-light"
           >
             + New product
           </Link>
@@ -36,18 +36,18 @@ export default async function DashboardProductsPage() {
       </div>
 
       {products.length === 0 ? (
-        <p className="rounded-2xl border border-dashed border-gray-300 py-16 text-center text-gray-500">
+        <p className="rounded-2xl border border-dashed border-line-strong py-16 text-center text-muted-2">
           No products yet.
           {canCreate && (
-            <Link href="/dashboard/products/new" className="mt-2 block font-medium text-[#2D6A4F] underline">
+            <Link href="/dashboard/products/new" className="mt-2 block font-medium text-primary-bright underline">
               Add your first product
             </Link>
           )}
         </p>
       ) : (
-        <div className="overflow-x-auto rounded-2xl border border-gray-200 bg-white shadow-sm">
+        <div className="overflow-x-auto rounded-2xl border border-line bg-surface shadow-sm">
           <table className="w-full min-w-[640px] text-left text-sm">
-            <thead className="border-b border-gray-200 bg-gray-50/60 text-xs uppercase tracking-wider text-gray-500">
+            <thead className="border-b border-line bg-surface-muted/60 text-xs uppercase tracking-wider text-muted-2">
               <tr>
                 <th className="px-5 py-3 font-semibold">Product</th>
                 <th className="px-5 py-3 font-semibold">Category</th>
@@ -57,18 +57,18 @@ export default async function DashboardProductsPage() {
                 <th className="px-5 py-3 text-right font-semibold">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-100">
+            <tbody className="divide-y divide-line">
               {products.map((product) => (
-                <tr key={product.id} className="hover:bg-gray-50/60">
+                <tr key={product.id} className="hover:bg-surface-muted/60">
                   <td className="px-5 py-3">
-                    <p className="font-semibold text-gray-900">{product.name}</p>
-                    <p className="text-xs text-gray-500">
+                    <p className="font-semibold text-ink">{product.name}</p>
+                    <p className="text-xs text-muted-2">
                       {product.unit}
                       {product.farmerName ? ` · ${product.farmerName}` : ""}
                     </p>
                   </td>
-                  <td className="px-5 py-3 text-gray-600">{product.categoryName}</td>
-                  <td className="px-5 py-3 font-medium text-gray-900">{formatPrice(product.price)}</td>
+                  <td className="px-5 py-3 text-muted">{product.categoryName}</td>
+                  <td className="px-5 py-3 font-medium text-ink">{formatPrice(product.price)}</td>
                   <td className="px-5 py-3">
                     <span
                       className={`inline-flex rounded-full px-2.5 py-0.5 text-xs font-semibold ${
@@ -89,7 +89,7 @@ export default async function DashboardProductsPage() {
                     <div className="flex items-center justify-end gap-2">
                       <Link
                         href={`/dashboard/products/${product.id}/edit`}
-                        className="rounded-lg px-3 py-1.5 text-sm font-medium text-[#2D6A4F] transition hover:bg-[#EAF6EE]"
+                        className="rounded-lg px-3 py-1.5 text-sm font-medium text-primary-bright transition hover:bg-primary-softer"
                       >
                         Edit
                       </Link>

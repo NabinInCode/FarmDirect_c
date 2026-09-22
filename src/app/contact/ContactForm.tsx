@@ -42,13 +42,13 @@ export default function ContactForm(): JSX.Element {
   }
 
   const fieldClass =
-    "w-full rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm text-gray-900 shadow-sm outline-none transition placeholder:text-gray-400 focus:border-[#2D6A4F]";
+    "w-full rounded-xl border border-line bg-surface px-4 py-2.5 text-sm text-ink shadow-sm outline-none transition placeholder:text-faint focus:border-primary-bright";
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4" noValidate>
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
-          <label htmlFor="name" className="mb-1.5 block text-sm font-medium text-gray-700">
+          <label htmlFor="name" className="mb-1.5 block text-sm font-medium text-ink-muted">
             Name
           </label>
           <input
@@ -61,7 +61,7 @@ export default function ContactForm(): JSX.Element {
           />
         </div>
         <div>
-          <label htmlFor="email" className="mb-1.5 block text-sm font-medium text-gray-700">
+          <label htmlFor="email" className="mb-1.5 block text-sm font-medium text-ink-muted">
             Email
           </label>
           <input
@@ -76,7 +76,7 @@ export default function ContactForm(): JSX.Element {
       </div>
 
       <div>
-        <label htmlFor="subject" className="mb-1.5 block text-sm font-medium text-gray-700">
+        <label htmlFor="subject" className="mb-1.5 block text-sm font-medium text-ink-muted">
           Subject
         </label>
         <input
@@ -90,7 +90,7 @@ export default function ContactForm(): JSX.Element {
       </div>
 
       <div>
-        <label htmlFor="message" className="mb-1.5 block text-sm font-medium text-gray-700">
+        <label htmlFor="message" className="mb-1.5 block text-sm font-medium text-ink-muted">
           Message
         </label>
         <textarea
@@ -105,7 +105,7 @@ export default function ContactForm(): JSX.Element {
       </div>
 
       {status === "success" && (
-        <p className="rounded-xl bg-[#D9F0E1] px-4 py-3 text-sm font-medium text-[#1B4332]">
+        <p className="rounded-xl bg-primary-soft px-4 py-3 text-sm font-medium text-primary">
           Message sent. We&apos;ll get back to you soon!
         </p>
       )}
@@ -116,7 +116,7 @@ export default function ContactForm(): JSX.Element {
       <button
         type="submit"
         disabled={status === "sending"}
-        className="w-full rounded-xl bg-[#1B4332] px-6 py-3 text-base font-medium text-white transition hover:bg-[#2C6B4A] disabled:cursor-not-allowed disabled:opacity-60"
+        className="w-full rounded-xl bg-primary-solid px-6 py-3 text-base font-medium text-white transition hover:bg-primary-solid-light disabled:cursor-not-allowed disabled:opacity-60"
       >
         {status === "sending" ? "Sending…" : "Send message"}
       </button>

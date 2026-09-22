@@ -20,27 +20,27 @@ export default async function ResetPasswordPage({
             quoteAuthor="— FarmDirect promise"
         >
             <div>
-                <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+                <h1 className="text-2xl font-bold tracking-tight text-ink sm:text-3xl">
                     Reset your password
                 </h1>
-                <p className="mt-2 text-sm text-gray-500">Enter a new password below.</p>
+                <p className="mt-2 text-sm text-muted-2">Enter a new password below.</p>
 
                 {token ? (
                     <ResetPasswordForm token={token} />
                 ) : (
                     <div className="mt-8 rounded-xl bg-amber-50 px-4 py-3 text-sm text-amber-700 ring-1 ring-amber-100">
                         No reset token found. This link may be broken or expired.
-                        <Link href="/forgot-password" className="mt-1 block font-semibold text-[#2D6A4F] underline">
+                        <Link href="/forgot-password" className="mt-1 block font-semibold text-primary-bright underline">
                             Request a new reset link →
                         </Link>
                     </div>
                 )}
 
-                <p className="mt-6 text-center text-sm text-gray-600">
+                <p className="mt-6 text-center text-sm text-muted">
                     Remembered it?{" "}
                     <Link
                         href="/login"
-                        className="font-semibold text-[#2D6A4F] transition hover:text-[#1B4332] hover:underline"
+                        className="font-semibold text-primary-bright transition hover:text-primary hover:underline"
                     >
                         Back to login
                     </Link>

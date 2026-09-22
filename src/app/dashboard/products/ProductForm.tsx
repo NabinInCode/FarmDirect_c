@@ -16,9 +16,9 @@ export interface ProductFormValues {
 }
 
 const inputBase =
-  "mt-1 block w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm text-gray-900 shadow-sm placeholder:text-gray-400 focus:border-[#2D6A4F] focus:outline-none focus:ring-2 focus:ring-[#2D6A4F]/20";
+  "mt-1 block w-full rounded-xl border border-line-strong bg-surface px-4 py-2.5 text-sm text-ink shadow-sm placeholder:text-faint focus:border-primary-bright focus:outline-none focus:ring-2 focus:ring-primary-bright/20";
 
-const labelBase = "block text-sm font-medium text-gray-700";
+const labelBase = "block text-sm font-medium text-ink-muted";
 
 export default function ProductForm({
   categories,
@@ -139,7 +139,7 @@ export default function ProductForm({
 
   return (
     <form onSubmit={handleSubmit} className="grid gap-6 lg:grid-cols-[1fr_320px]">
-      <div className="space-y-5 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+      <div className="space-y-5 rounded-2xl border border-line bg-surface p-6 shadow-sm">
         {error && (
           <p className="rounded-lg bg-red-50 px-4 py-2 text-sm font-medium text-red-600" role="alert">
             {error}
@@ -259,12 +259,12 @@ export default function ProductForm({
 
         <div>
           <label className={labelBase}>
-            Product image <span className="text-gray-400">(optional)</span>
+            Product image <span className="text-faint">(optional)</span>
           </label>
 
           {values.image || localPreview ? (
             <div className="mt-3 flex items-center gap-4">
-              <div className="relative h-32 w-32 shrink-0 overflow-hidden rounded-xl border border-gray-200 bg-gray-50">
+              <div className="relative h-32 w-32 shrink-0 overflow-hidden rounded-xl border border-line bg-surface-muted">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={localPreview || values.image}
@@ -280,7 +280,7 @@ export default function ProductForm({
               <div className="space-y-2">
                 <label
                   htmlFor="image-file"
-                  className="inline-flex cursor-pointer items-center gap-1.5 rounded-lg border border-gray-300 px-3 py-1.5 text-sm font-medium text-gray-700 transition hover:border-[#2D6A4F] hover:text-[#2D6A4F]"
+                  className="inline-flex cursor-pointer items-center gap-1.5 rounded-lg border border-line-strong px-3 py-1.5 text-sm font-medium text-ink-muted transition hover:border-primary-bright hover:text-primary-bright"
                 >
                   {uploading ? "Uploading..." : "Replace"}
                 </label>
@@ -298,7 +298,7 @@ export default function ProductForm({
           ) : (
             <label
               htmlFor="image-file"
-              className="mt-3 inline-flex cursor-pointer items-center gap-2 rounded-xl border border-dashed border-gray-300 bg-gray-50 px-4 py-3 text-sm font-medium text-gray-600 transition hover:border-[#2D6A4F] hover:text-[#2D6A4F]"
+              className="mt-3 inline-flex cursor-pointer items-center gap-2 rounded-xl border border-dashed border-line-strong bg-surface-muted px-4 py-3 text-sm font-medium text-muted transition hover:border-primary-bright hover:text-primary-bright"
             >
               <svg
                 className="h-5 w-5"
@@ -327,7 +327,7 @@ export default function ProductForm({
             onChange={handleFileChange}
             className="sr-only"
           />
-          <p className="mt-2 text-xs text-gray-500">
+          <p className="mt-2 text-xs text-muted-2">
             JPG, PNG, WEBP or GIF up to 4 MB. Leave empty to use an auto-generated placeholder.
           </p>
         </div>
@@ -335,7 +335,7 @@ export default function ProductForm({
         <div>
           <label className={labelBase} htmlFor="image">
             {" "}
-            Or paste an image URL <span className="text-gray-400">(optional)</span>
+            Or paste an image URL <span className="text-faint">(optional)</span>
           </label>
           <input
             id="image"
@@ -351,22 +351,22 @@ export default function ProductForm({
       </div>
 
       <div className="h-max space-y-4 lg:sticky lg:top-6">
-        <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-          <h2 className="text-sm font-bold text-gray-900">Publish</h2>
+        <div className="rounded-2xl border border-line bg-surface p-6 shadow-sm">
+          <h2 className="text-sm font-bold text-ink">Publish</h2>
           <label className="mt-4 flex cursor-pointer items-center justify-between gap-3">
-            <span className="text-sm font-medium text-gray-700">Featured on storefront</span>
+            <span className="text-sm font-medium text-ink-muted">Featured on storefront</span>
             <input
               type="checkbox"
               checked={values.featured}
               onChange={(e) => update("featured", e.target.checked)}
-              className="h-4 w-4 accent-[#1B4332]"
+              className="h-4 w-4 accent-primary"
             />
           </label>
 
           <button
             type="submit"
             disabled={saving}
-            className="mt-6 w-full rounded-xl bg-[#1B4332] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#2C6B4A] disabled:cursor-not-allowed disabled:bg-gray-300"
+            className="mt-6 w-full rounded-xl bg-primary-solid px-6 py-3 text-sm font-semibold text-white transition hover:bg-primary-solid-light disabled:cursor-not-allowed disabled:bg-surface-muted"
           >
             {saving ? "Saving..." : "Save product"}
           </button>

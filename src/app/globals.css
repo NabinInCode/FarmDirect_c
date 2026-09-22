@@ -1,22 +1,87 @@
 @import "tailwindcss";
 
 :root {
+  color-scheme: light;
+
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #111827;
+
+  --surface: #ffffff;
+  --surface-muted: #f9fafb;
+  --ink: #111827;
+  --ink-muted: #374151;
+  --muted: #4b5563;
+  --muted-2: #6b7280;
+  --faint: #9ca3af;
+  --line: #e5e7eb;
+  --line-strong: #d1d5db;
+
+  --primary: #2d7a54;
+  --primary-bright: #3d8b60;
+  --primary-solid: #2d7a54;
+  --primary-solid-light: #3f9468;
+  --primary-deep: #236639;
+  --primary-dark: #154224;
+  --primary-soft: #eaf4ee;
+  --primary-softer: #f1f7f3;
+  --cream: #f9f7f0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+
+    --background: #0b100d;
+    --foreground: #e6ede7;
+
+    --surface: #111713;
+    --surface-muted: #161e19;
+    --ink: #f0f4f1;
+    --ink-muted: #c3cdc7;
+    --muted: #9ba69f;
+    --muted-2: #7d8a82;
+    --faint: #5f6b63;
+    --line: #26312b;
+    --line-strong: #34423a;
+
+    --primary: #4bbf85;
+    --primary-bright: #6dd9a1;
+    --primary-solid: #1f5c3c;
+    --primary-solid-light: #2e8a58;
+    --primary-deep: #35a06b;
+    --primary-dark: #0e241a;
+    --primary-soft: #14261c;
+    --primary-softer: #0f1b14;
+    --cream: #161a16;
+  }
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-muted: var(--muted);
+  --color-muted-2: var(--muted-2);
+  --color-faint: var(--faint);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+
+  --color-primary: var(--primary);
+  --color-primary-bright: var(--primary-bright);
+  --color-primary-solid: var(--primary-solid);
+  --color-primary-solid-light: var(--primary-solid-light);
+  --color-primary-deep: var(--primary-deep);
+  --color-primary-dark: var(--primary-dark);
+  --color-primary-soft: var(--primary-soft);
+  --color-primary-softer: var(--primary-softer);
+  --color-cream: var(--cream);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {

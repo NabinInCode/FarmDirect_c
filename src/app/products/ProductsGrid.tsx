@@ -27,12 +27,12 @@ export default function ProductsGrid({
 }) {
   if (products.length === 0) {
     return (
-      <div className="flex flex-col items-center gap-4 rounded-xl border border-dashed border-gray-300 py-16 text-center">
-        <p className="text-gray-500">{emptyMessage}</p>
+      <div className="flex flex-col items-center gap-4 rounded-xl border border-dashed border-line-strong py-16 text-center">
+        <p className="text-muted-2">{emptyMessage}</p>
         {clearFiltersHref && (
           <Link
             href={clearFiltersHref}
-            className="rounded-full bg-[#1B4332] px-4 py-2 text-sm font-medium text-white transition hover:bg-[#2D6A4F]"
+            className="rounded-full bg-primary-solid px-4 py-2 text-sm font-medium text-white transition hover:bg-primary-solid"
           >
             Clear filters
           </Link>
@@ -47,7 +47,7 @@ export default function ProductsGrid({
         <Link
           key={product.id}
           href={`/products/${product.slug}`}
-          className="group overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+          className="group overflow-hidden rounded-2xl border border-line bg-surface shadow-sm transition hover:-translate-y-1 hover:shadow-md"
         >
           <ProductVisual
             name={product.name}
@@ -55,17 +55,17 @@ export default function ProductsGrid({
             image={product.image}
           />
           <div className="p-4">
-            <h2 className="truncate text-sm font-semibold text-gray-900 group-hover:text-[#2D6A4F]">
+            <h2 className="truncate text-sm font-semibold text-ink group-hover:text-primary-bright">
               {product.name}
             </h2>
-            <p className="mt-0.5 text-xs text-gray-500">{product.unit}</p>
+            <p className="mt-0.5 text-xs text-muted-2">{product.unit}</p>
             {product.rating && (
               <RatingStars value={product.rating.avg} size="sm" />
             )}
             <div className="mt-2 flex items-center justify-between">
-              <p className="text-base font-bold text-[#1B4332]">{formatPrice(product.price)}</p>
+              <p className="text-base font-bold text-primary">{formatPrice(product.price)}</p>
               <span
-                className={`text-xs font-medium ${product.stock > 0 ? "text-[#2D6A4F]" : "text-red-500"}`}
+                className={`text-xs font-medium ${product.stock > 0 ? "text-primary-bright" : "text-red-500"}`}
               >
                 {product.stock > 0 ? "In stock" : "Out of stock"}
               </span>

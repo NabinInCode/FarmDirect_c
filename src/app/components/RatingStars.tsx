@@ -27,17 +27,17 @@ export default function RatingStars({
         if (hasHalf && i === fullStars) {
           return (
             <span key={i} className={`relative inline-block ${dimensions}`}>
-              <StarIcon className={`${dimensions} text-gray-300`} filled />
+              <StarIcon className={`${dimensions} text-faint`} filled />
               <span className="absolute inset-0 overflow-hidden w-1/2">
                 <StarIcon className={`${dimensions} text-amber-400`} filled />
               </span>
             </span>
           );
         }
-        return <StarIcon key={i} className={`${dimensions} text-gray-300`} />;
+        return <StarIcon key={i} className={`${dimensions} text-faint`} />;
       })}
       {count !== undefined && (
-        <span className="ml-1 text-sm font-medium text-gray-500">
+        <span className="ml-1 text-sm font-medium text-muted-2">
           {value.toFixed(1)} ({count})
         </span>
       )}

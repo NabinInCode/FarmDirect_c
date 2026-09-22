@@ -25,20 +25,20 @@ export default async function SignupPage({
             quoteAuthor="— The Delgado household"
         >
             <div>
-                <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+                <h1 className="text-2xl font-bold tracking-tight text-ink sm:text-3xl">
                     Create your account
                 </h1>
-                <p className="mt-2 text-sm text-gray-500">
+                <p className="mt-2 text-sm text-muted-2">
                     Join FarmDirect to order fresh produce from local farms
                 </p>
 
                 <SignupForm redirectTo={redirectTo} />
 
-                <p className="mt-6 text-center text-sm text-gray-600">
+                <p className="mt-6 text-center text-sm text-muted">
                     Already have an account?{" "}
                     <Link
                         href="/login"
-                        className="font-semibold text-[#2D6A4F] transition hover:text-[#1B4332] hover:underline"
+                        className="font-semibold text-primary-bright transition hover:text-primary hover:underline"
                     >
                         Log in
                     </Link>

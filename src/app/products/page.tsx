@@ -50,9 +50,9 @@ export default async function ProductsPage({
   return (
     <main className="mx-auto min-h-[70vh] w-full max-w-7xl flex-1 px-4 py-12 sm:px-6 lg:px-8">
       <div className="mb-8">
-        <p className="text-sm font-semibold uppercase tracking-widest text-[#2D6A4F]">Farm fresh</p>
-        <h1 className="mt-2 text-3xl font-bold text-gray-900">Products</h1>
-        <p className="mt-2 text-gray-500">
+        <p className="text-sm font-semibold uppercase tracking-widest text-primary-bright">Farm fresh</p>
+        <h1 className="mt-2 text-3xl font-bold text-ink">Products</h1>
+        <p className="mt-2 text-muted-2">
           {result.total} item{result.total === 1 ? "" : "s"}
           {activeCategoryName ? ` in ${activeCategoryName}` : ""}
           {query ? ` matching “${query}”` : ""} — straight from the farm.
@@ -65,8 +65,8 @@ export default async function ProductsPage({
             href={query ? `/products?q=${encodeURIComponent(query)}` : "/products"}
             className={`rounded-full px-4 py-1.5 text-sm font-medium transition ${
               activeCategory
-                ? "border border-gray-200 bg-white text-gray-600 hover:border-[#2D6A4F] hover:text-[#2D6A4F]"
-                : "bg-[#1B4332] text-white"
+                ? "border border-line bg-surface text-muted hover:border-primary-bright hover:text-primary-bright"
+                : "bg-primary-solid text-white"
             }`}
           >
             All
@@ -83,8 +83,8 @@ export default async function ProductsPage({
                 href={`/products?${base.toString()}`}
                 className={`rounded-full px-4 py-1.5 text-sm font-medium transition ${
                   active
-                    ? "bg-[#1B4332] text-white"
-                    : "border border-gray-200 bg-white text-gray-600 hover:border-[#2D6A4F] hover:text-[#2D6A4F]"
+                    ? "bg-primary-solid text-white"
+                    : "border border-line bg-surface text-muted hover:border-primary-bright hover:text-primary-bright"
                 }`}
               >
                 {category.name}

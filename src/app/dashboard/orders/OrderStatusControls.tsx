@@ -53,7 +53,7 @@ export default function OrderStatusControls({
 
   if (terminal) {
     return (
-      <p className="rounded-xl bg-gray-50 px-4 py-3 text-sm font-medium text-gray-500">
+      <p className="rounded-xl bg-surface-muted px-4 py-3 text-sm font-medium text-muted-2">
         {status === "CANCELLED" ? "This order was cancelled." : "This order was delivered."}
       </p>
     );
@@ -61,7 +61,7 @@ export default function OrderStatusControls({
 
   if (!canAdvance && !canCancel) {
     return (
-      <p className="rounded-xl bg-gray-50 px-4 py-3 text-sm font-medium text-gray-500">
+      <p className="rounded-xl bg-surface-muted px-4 py-3 text-sm font-medium text-muted-2">
         Status is updated by the store admin.
       </p>
     );
@@ -74,7 +74,7 @@ export default function OrderStatusControls({
           type="button"
           onClick={() => updateStatus(next)}
           disabled={busy}
-          className="rounded-xl bg-[#1B4332] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#2C6B4A] disabled:opacity-40"
+          className="rounded-xl bg-primary-solid px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-primary-solid-light disabled:opacity-40"
         >
           {actionLabel[next] ?? `Move to ${next}`}
         </button>

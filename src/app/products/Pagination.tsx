@@ -49,8 +49,8 @@ export default function Pagination({
         aria-disabled={page <= 1}
         className={`flex h-9 items-center rounded-lg border px-3 text-sm font-medium transition ${
           page <= 1
-            ? "pointer-events-none border-gray-200 text-gray-300"
-            : "border-gray-200 bg-white text-gray-700 hover:border-[#2D6A4F] hover:text-[#2D6A4F]"
+            ? "pointer-events-none border-line text-faint"
+            : "border-line bg-surface text-ink-muted hover:border-primary-bright hover:text-primary-bright"
         }`}
       >
         Prev
@@ -58,7 +58,7 @@ export default function Pagination({
 
       {pages.map((p, i) =>
         p === "…" ? (
-          <span key={`gap-${i}`} className="px-1 text-gray-400">
+          <span key={`gap-${i}`} className="px-1 text-faint">
             …
           </span>
         ) : (
@@ -68,8 +68,8 @@ export default function Pagination({
             aria-current={p === page ? "page" : undefined}
             className={`flex h-9 w-9 items-center justify-center rounded-lg border text-sm font-medium transition ${
               p === page
-                ? "border-[#1B4332] bg-[#1B4332] text-white"
-                : "border-gray-200 bg-white text-gray-700 hover:border-[#2D6A4F] hover:text-[#2D6A4F]"
+                ? "border-primary bg-primary-solid text-white"
+                : "border-line bg-surface text-ink-muted hover:border-primary-bright hover:text-primary-bright"
             }`}
           >
             {p}
@@ -82,8 +82,8 @@ export default function Pagination({
         aria-disabled={page >= totalPages}
         className={`flex h-9 items-center rounded-lg border px-3 text-sm font-medium transition ${
           page >= totalPages
-            ? "pointer-events-none border-gray-200 text-gray-300"
-            : "border-gray-200 bg-white text-gray-700 hover:border-[#2D6A4F] hover:text-[#2D6A4F]"
+            ? "pointer-events-none border-line text-faint"
+            : "border-line bg-surface text-ink-muted hover:border-primary-bright hover:text-primary-bright"
         }`}
       >
         Next

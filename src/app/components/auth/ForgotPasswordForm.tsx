@@ -41,15 +41,15 @@ export default function ForgotPasswordForm(): JSX.Element {
                 </div>
             )}
 
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-muted-2">
                 Enter the email linked to your account and we&apos;ll send you a link to reset your password.
             </p>
 
             <div>
-                <label className="mb-1.5 block text-sm font-medium text-gray-700">Email</label>
+                <label className="mb-1.5 block text-sm font-medium text-ink-muted">Email</label>
                 <div className="relative">
                     <svg
-                        className="pointer-events-none absolute left-3.5 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400"
+                        className="pointer-events-none absolute left-3.5 top-1/2 h-5 w-5 -translate-y-1/2 text-faint"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -64,7 +64,7 @@ export default function ForgotPasswordForm(): JSX.Element {
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="you@example.com"
                         required
-                        className="w-full rounded-xl border border-gray-200 bg-gray-50/60 py-2.5 pl-11 pr-10 text-sm text-gray-900 placeholder:text-gray-400 outline-none transition focus:border-[#2D6A4F] focus:bg-white focus:ring-2 focus:ring-[#2D6A4F]/20"
+                        className="w-full rounded-xl border border-line bg-surface-muted/60 py-2.5 pl-11 pr-10 text-sm text-ink placeholder:text-faint outline-none transition focus:border-primary-bright focus:bg-surface focus:ring-2 focus:ring-primary-bright/20"
                     />
                 </div>
             </div>
@@ -75,7 +75,7 @@ export default function ForgotPasswordForm(): JSX.Element {
                     <p className="mt-1">
                         Since this is a demo without email delivery, use the link below (it expires in 1 hour):
                     </p>
-                    <a href={resetUrl} className="mt-2 inline-block break-all font-semibold text-[#2D6A4F] underline">
+                    <a href={resetUrl} className="mt-2 inline-block break-all font-semibold text-primary-bright underline">
                         {resetUrl}
                     </a>
                 </div>

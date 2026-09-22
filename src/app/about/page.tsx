@@ -54,11 +54,11 @@ export default function AboutPage() {
     <main className="mx-auto min-h-[70vh] w-full max-w-7xl flex-1 px-4 py-12 sm:px-6 lg:px-8">
       <section className="grid items-center gap-10 lg:grid-cols-2">
         <div>
-          <p className="text-sm font-semibold uppercase tracking-widest text-[#2D6A4F]">Our story</p>
-          <h1 className="mt-3 text-3xl font-bold text-gray-900 sm:text-4xl lg:text-5xl">
+          <p className="text-sm font-semibold uppercase tracking-widest text-primary-bright">Our story</p>
+          <h1 className="mt-3 text-3xl font-bold text-ink sm:text-4xl lg:text-5xl">
             Good food starts at the source.
           </h1>
-          <p className="mt-5 max-w-xl text-lg text-gray-600">
+          <p className="mt-5 max-w-xl text-lg text-muted">
             FarmDirect began with a simple belief: the people who grow your food deserve a fair
             share, and you deserve to know exactly where it comes from. We connect local farmers
             directly with the families eating their harvest.
@@ -66,22 +66,22 @@ export default function AboutPage() {
           <div className="mt-8 flex flex-wrap gap-4">
             <Link
               href="/products"
-              className="rounded-md bg-[#1B4332] px-6 py-3 text-base font-medium text-white transition hover:bg-[#2C6B4A]"
+              className="rounded-md bg-primary-solid px-6 py-3 text-base font-medium text-white transition hover:bg-primary-solid-light"
             >
               Shop the harvest
             </Link>
             <Link
               href="/contact"
-              className="rounded-md border border-[#1B4332] px-6 py-3 text-base font-medium text-[#1B4332] transition hover:bg-[#EAF6EE]"
+              className="rounded-md border border-primary px-6 py-3 text-base font-medium text-primary transition hover:bg-primary-softer"
             >
               Contact us
             </Link>
           </div>
         </div>
 
-        <div className="rounded-[2rem] bg-gradient-to-br from-[#EAF6EE] via-[#F9F7F0] to-[#D9F0E1] p-8 shadow-xl shadow-slate-200/60">
+        <div className="rounded-[2rem] bg-gradient-to-br from-primary-softer via-cream to-primary-soft p-8 shadow-xl shadow-black/20">
           <div className="grid gap-6 sm:grid-cols-3">
-            <div className="rounded-2xl bg-[#1B4332] p-6 text-white shadow-md">
+            <div className="rounded-2xl bg-primary-solid p-6 text-white shadow-md">
               <p className="text-3xl font-bold">1200+</p>
               <p className="mt-1 text-sm text-emerald-100">Happy customers</p>
             </div>
@@ -89,9 +89,9 @@ export default function AboutPage() {
               <p className="text-3xl font-bold">45+</p>
               <p className="mt-1 text-sm text-amber-50">Local partner farms</p>
             </div>
-            <div className="rounded-2xl bg-white p-6 shadow-md">
-              <p className="text-3xl font-bold text-gray-900">24h</p>
-              <p className="mt-1 text-sm text-gray-500">Farm to doorstep</p>
+            <div className="rounded-2xl bg-surface p-6 shadow-md">
+              <p className="text-3xl font-bold text-ink">24h</p>
+              <p className="mt-1 text-sm text-muted-2">Farm to doorstep</p>
             </div>
           </div>
         </div>
@@ -99,17 +99,17 @@ export default function AboutPage() {
 
       <section className="mt-20">
         <div className="mb-8">
-          <p className="text-sm font-semibold uppercase tracking-widest text-[#2D6A4F]">What we stand for</p>
-          <h2 className="mt-2 text-3xl font-bold text-gray-900">Rooted in quality, made for everyday life.</h2>
+          <p className="text-sm font-semibold uppercase tracking-widest text-primary-bright">What we stand for</p>
+          <h2 className="mt-2 text-3xl font-bold text-ink">Rooted in quality, made for everyday life.</h2>
         </div>
         <div className="grid gap-6 md:grid-cols-2">
           {values.map((value) => (
             <div
               key={value.title}
-              className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm"
+              className="rounded-2xl border border-line bg-surface p-6 shadow-sm"
             >
-              <h3 className="text-xl font-semibold text-gray-900">{value.title}</h3>
-              <p className="mt-3 text-gray-600">{value.description}</p>
+              <h3 className="text-xl font-semibold text-ink">{value.title}</h3>
+              <p className="mt-3 text-muted">{value.description}</p>
             </div>
           ))}
         </div>
@@ -117,26 +117,26 @@ export default function AboutPage() {
 
       <section className="mt-20">
         <div className="mb-8">
-          <p className="text-sm font-semibold uppercase tracking-widest text-[#2D6A4F]">How it works</p>
-          <h2 className="mt-2 text-3xl font-bold text-gray-900">From our farm to your table.</h2>
+          <p className="text-sm font-semibold uppercase tracking-widest text-primary-bright">How it works</p>
+          <h2 className="mt-2 text-3xl font-bold text-ink">From our farm to your table.</h2>
         </div>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((step, index) => (
             <div
               key={step.title}
-              className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm"
+              className="rounded-2xl border border-line bg-surface p-6 shadow-sm"
             >
-              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#D9F0E1] text-sm font-bold text-[#1B4332]">
+              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary-soft text-sm font-bold text-primary">
                 {index + 1}
               </span>
-              <h3 className="mt-4 text-lg font-semibold text-gray-900">{step.title}</h3>
-              <p className="mt-2 text-sm text-gray-600">{step.description}</p>
+              <h3 className="mt-4 text-lg font-semibold text-ink">{step.title}</h3>
+              <p className="mt-2 text-sm text-muted">{step.description}</p>
             </div>
           ))}
         </div>
       </section>
 
-      <section className="mt-20 rounded-[2rem] bg-[#1B4332] px-8 py-12 text-center text-white">
+      <section className="mt-20 rounded-[2rem] bg-primary-solid px-8 py-12 text-center text-white">
         <h2 className="text-2xl font-bold sm:text-3xl">Ready to eat closer to the source?</h2>
         <p className="mx-auto mt-3 max-w-xl text-white/80">
           Browse the freshest local harvest, order in a few taps, and have it at your door tomorrow.

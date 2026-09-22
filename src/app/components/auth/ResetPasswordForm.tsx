@@ -42,7 +42,7 @@ export default function ResetPasswordForm({ token }: { token: string }): JSX.Ele
                 <p className="font-medium">Password updated!</p>
                 <p className="mt-1">
                     You can now log in with your new password.{" "}
-                    <Link href="/login" className="font-semibold text-[#2D6A4F] underline">
+                    <Link href="/login" className="font-semibold text-primary-bright underline">
                         Go to login
                     </Link>
                 </p>
@@ -61,15 +61,15 @@ export default function ResetPasswordForm({ token }: { token: string }): JSX.Ele
                 </div>
             )}
 
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-muted-2">
                 Choose a new password (at least 6 characters).
             </p>
 
             <div>
-                <label className="mb-1.5 block text-sm font-medium text-gray-700">New password</label>
+                <label className="mb-1.5 block text-sm font-medium text-ink-muted">New password</label>
                 <div className="relative">
                     <svg
-                        className="pointer-events-none absolute left-3.5 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400"
+                        className="pointer-events-none absolute left-3.5 top-1/2 h-5 w-5 -translate-y-1/2 text-faint"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -84,16 +84,16 @@ export default function ResetPasswordForm({ token }: { token: string }): JSX.Ele
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder="Enter new password"
                         required
-                        className="w-full rounded-xl border border-gray-200 bg-gray-50/60 py-2.5 pl-11 pr-10 text-sm text-gray-900 placeholder:text-gray-400 outline-none transition focus:border-[#2D6A4F] focus:bg-white focus:ring-2 focus:ring-[#2D6A4F]/20"
+                        className="w-full rounded-xl border border-line bg-surface-muted/60 py-2.5 pl-11 pr-10 text-sm text-ink placeholder:text-faint outline-none transition focus:border-primary-bright focus:bg-surface focus:ring-2 focus:ring-primary-bright/20"
                     />
                 </div>
             </div>
 
             <div>
-                <label className="mb-1.5 block text-sm font-medium text-gray-700">Confirm password</label>
+                <label className="mb-1.5 block text-sm font-medium text-ink-muted">Confirm password</label>
                 <div className="relative">
                     <svg
-                        className="pointer-events-none absolute left-3.5 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400"
+                        className="pointer-events-none absolute left-3.5 top-1/2 h-5 w-5 -translate-y-1/2 text-faint"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -108,7 +108,7 @@ export default function ResetPasswordForm({ token }: { token: string }): JSX.Ele
                         onChange={(e) => setConfirm(e.target.value)}
                         placeholder="Re-enter new password"
                         required
-                        className="w-full rounded-xl border border-gray-200 bg-gray-50/60 py-2.5 pl-11 pr-10 text-sm text-gray-900 placeholder:text-gray-400 outline-none transition focus:border-[#2D6A4F] focus:bg-white focus:ring-2 focus:ring-[#2D6A4F]/20"
+                        className="w-full rounded-xl border border-line bg-surface-muted/60 py-2.5 pl-11 pr-10 text-sm text-ink placeholder:text-faint outline-none transition focus:border-primary-bright focus:bg-surface focus:ring-2 focus:ring-primary-bright/20"
                     />
                 </div>
             </div>

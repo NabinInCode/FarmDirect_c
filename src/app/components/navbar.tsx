@@ -42,27 +42,27 @@ export default function Navbar(): JSX.Element {
     }
 
     return (
-        <nav className="w-full bg-[#1B4332] text-white border-b">
+        <nav className="w-full border-b border-white/10 bg-primary-deep text-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16">
                     <div className="flex items-center gap-2 ">
-                        <Link href="/" className="flex items-center rounded-md p-2 hover:bg-[#2C6B4A]">
-                            <Image src="/logo.png" alt="FarmDirect logo" width={80} height={60} />
+                        <Link href="/" className="flex items-center rounded-md p-2 transition hover:bg-surface/10">
+                            <Image src="/logo.png" alt="FarmDirect logo" width={72} height={54} />
                         </Link>
                     </div>
 
-                    <div className="hidden md:flex md:items-center md:space-x-6">
-                        <Link href="/">Home</Link>
-                        <Link href="/products">Products</Link>
-                        <Link href="/about">About</Link>
-                        <Link href="/contact">Contact</Link>
+                    <div className="hidden md:flex md:items-center md:space-x-2">
+                        <Link href="/" className="rounded-lg px-3 py-2 text-sm font-medium text-emerald-50/90 transition hover:bg-surface/10 hover:text-white">Home</Link>
+                        <Link href="/products" className="rounded-lg px-3 py-2 text-sm font-medium text-emerald-50/90 transition hover:bg-surface/10 hover:text-white">Products</Link>
+                        <Link href="/about" className="rounded-lg px-3 py-2 text-sm font-medium text-emerald-50/90 transition hover:bg-surface/10 hover:text-white">About</Link>
+                        <Link href="/contact" className="rounded-lg px-3 py-2 text-sm font-medium text-emerald-50/90 transition hover:bg-surface/10 hover:text-white">Contact</Link>
                     </div>
 
                     <div className="hidden md:flex md:items-center md:space-x-3">
                         <Link
                             href="/cart"
                             aria-label="Cart"
-                            className="flex items-center gap-1.5 rounded-md px-3 py-1 font-medium transition hover:bg-[#2C6B4A]"
+                            className="flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-medium text-emerald-50/90 transition hover:bg-surface/10 hover:text-white"
                         >
                             <svg
                                 className="h-5 w-5"
@@ -85,16 +85,16 @@ export default function Navbar(): JSX.Element {
                                 {user.role === "FARMER" || user.role === "ADMIN" ? (
                                     <Link
                                         href="/dashboard"
-                                        className="flex items-center gap-1.5 rounded-md px-3 py-1 font-medium transition hover:bg-[#2C6B4A]"
+                                        className="flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-medium text-emerald-50/90 transition hover:bg-surface/10 hover:text-white"
                                     >
                                         Dashboard
                                     </Link>
                                 ) : null}
                                 <Link
                                     href="/account"
-                                    className="flex items-center gap-2 rounded-md px-3 py-1 font-medium transition hover:bg-[#2C6B4A]"
+                                    className="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm font-medium text-emerald-50/90 transition hover:bg-surface/10 hover:text-white"
                                 >
-                                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#D9F0E1] text-xs font-bold text-[#1B4332]">
+                                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-surface/20 text-xs font-bold text-white">
                                         {user.name.charAt(0).toUpperCase()}
                                     </span>
                                     {user.name.split(" ")[0]}
@@ -102,17 +102,17 @@ export default function Navbar(): JSX.Element {
                                 <button
                                     type="button"
                                     onClick={handleLogout}
-                                    className="rounded-md bg-red-500/90 hover:bg-red-500 px-3 py-1 font-medium text-xs"
+                                    className="rounded-lg bg-red-500/90 px-3 py-1.5 text-xs font-medium text-white transition hover:bg-red-500"
                                 >
                                     Sign out
                                 </button>
                             </>
                         ) : (
                             <>
-                                <Link href="/login" className="bg-white hover:bg-amber-600 hover:text-white text-black px-3 py-1 rounded-md font-medium">
+                                <Link href="/login" className="rounded-lg border border-white/30 px-4 py-1.5 text-sm font-medium text-white transition hover:bg-surface/10">
                                     Log in
                                 </Link>
-                                <Link href="/signup" className="bg-amber-500 hover:bg-amber-600 text-white px-3 py-1 rounded-md font-medium">
+                                <Link href="/signup" className="rounded-lg bg-surface px-4 py-1.5 text-sm font-semibold text-primary-deep transition hover:bg-emerald-50">
                                     Sign up
                                 </Link>
                             </>
@@ -123,7 +123,7 @@ export default function Navbar(): JSX.Element {
                         <button
                             aria-label="Toggle menu"
                             onClick={() => setOpen((v) => !v)}
-                            className="inline-flex items-center justify-center p-2 rounded-md focus:outline-none"
+                            className="inline-flex items-center justify-center p-2 rounded-md text-white focus:outline-none"
                         >
                             <svg
                                 className="h-6 w-6"
@@ -145,21 +145,21 @@ export default function Navbar(): JSX.Element {
             </div>
 
             {open && (
-                <div className="md:hidden px-4 pb-4 space-y-2">
-                    <Link href="/" onClick={() => setOpen(false)} className="block">Home</Link>
-                    <Link href="/products" onClick={() => setOpen(false)} className="block">Products</Link>
-                    <Link href="/about" onClick={() => setOpen(false)} className="block">About</Link>
-                    <Link href="/contact" onClick={() => setOpen(false)} className="block">Contact</Link>
-                    <Link href="/cart" onClick={() => setOpen(false)} className="block">Cart</Link>
+                <div className="md:hidden border-t border-white/10 bg-primary-deep px-4 pb-4 pt-2 space-y-1">
+                    <Link href="/" onClick={() => setOpen(false)} className="block rounded-lg px-3 py-2 text-sm font-medium text-emerald-50/90 hover:bg-surface/10 hover:text-white">Home</Link>
+                    <Link href="/products" onClick={() => setOpen(false)} className="block rounded-lg px-3 py-2 text-sm font-medium text-emerald-50/90 hover:bg-surface/10 hover:text-white">Products</Link>
+                    <Link href="/about" onClick={() => setOpen(false)} className="block rounded-lg px-3 py-2 text-sm font-medium text-emerald-50/90 hover:bg-surface/10 hover:text-white">About</Link>
+                    <Link href="/contact" onClick={() => setOpen(false)} className="block rounded-lg px-3 py-2 text-sm font-medium text-emerald-50/90 hover:bg-surface/10 hover:text-white">Contact</Link>
+                    <Link href="/cart" onClick={() => setOpen(false)} className="block rounded-lg px-3 py-2 text-sm font-medium text-emerald-50/90 hover:bg-surface/10 hover:text-white">Cart</Link>
                     <div className="pt-2 border-t border-white/10">
                         {user ? (
                             <>
                                 {user.role === "FARMER" || user.role === "ADMIN" ? (
-                                    <Link href="/dashboard" onClick={() => setOpen(false)} className="block py-2">
+                                    <Link href="/dashboard" onClick={() => setOpen(false)} className="block rounded-lg px-3 py-2 text-sm font-medium text-emerald-50/90 hover:bg-surface/10 hover:text-white">
                                         Dashboard
                                     </Link>
                                 ) : null}
-                                <Link href="/account" onClick={() => setOpen(false)} className="block py-2">
+                                <Link href="/account" onClick={() => setOpen(false)} className="block rounded-lg px-3 py-2 text-sm font-medium text-emerald-50/90 hover:bg-surface/10 hover:text-white">
                                     Account
                                 </Link>
                                 <button
@@ -168,15 +168,15 @@ export default function Navbar(): JSX.Element {
                                         setOpen(false);
                                         handleLogout();
                                     }}
-                                    className="block py-2 font-medium text-red-200"
+                                    className="block rounded-lg px-3 py-2 text-sm font-medium text-red-300 hover:bg-surface/10 hover:text-red-200"
                                 >
                                     Sign out
                                 </button>
                             </>
                         ) : (
                             <>
-                                <Link href="/login" onClick={() => setOpen(false)} className="block py-2">Log in</Link>
-                                <Link href="/signup" onClick={() => setOpen(false)} className="block py-2 font-medium">Sign up</Link>
+                                <Link href="/login" onClick={() => setOpen(false)} className="block rounded-lg px-3 py-2 text-sm font-medium text-emerald-50/90 hover:bg-surface/10 hover:text-white">Log in</Link>
+                                <Link href="/signup" onClick={() => setOpen(false)} className="block rounded-lg px-3 py-2 text-sm font-semibold text-white hover:bg-surface/10">Sign up</Link>
                             </>
                         )}
                     </div>

@@ -60,7 +60,7 @@ export default function CartList({
       {items.map((item) => (
         <div
           key={item.id}
-          className="flex gap-4 rounded-2xl border border-gray-200 bg-white p-4 shadow-sm sm:gap-6"
+          className="flex gap-4 rounded-2xl border border-line bg-surface p-4 shadow-sm sm:gap-6"
         >
           <Link href={`/products/${item.product.slug}`} className="w-24 shrink-0 sm:w-28">
             <div className="overflow-hidden rounded-xl">
@@ -77,11 +77,11 @@ export default function CartList({
               <div>
                 <Link
                   href={`/products/${item.product.slug}`}
-                  className="font-semibold text-gray-900 hover:text-[#2D6A4F]"
+                  className="font-semibold text-ink hover:text-primary-bright"
                 >
                   {item.product.name}
                 </Link>
-                <p className="mt-0.5 text-xs text-gray-500">
+                <p className="mt-0.5 text-xs text-muted-2">
                   {formatPrice(item.product.price)} / {item.product.unit}
                 </p>
               </div>
@@ -90,7 +90,7 @@ export default function CartList({
                 onClick={() => removeItem(item)}
                 disabled={busyId === item.id}
                 aria-label={`Remove ${item.product.name} from cart`}
-                className="rounded-lg p-1.5 text-gray-400 transition hover:bg-red-50 hover:text-red-500 disabled:opacity-40"
+                className="rounded-lg p-1.5 text-faint transition hover:bg-red-50 hover:text-red-500 disabled:opacity-40"
               >
                 <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                   <path
@@ -104,28 +104,28 @@ export default function CartList({
             </div>
 
             <div className="mt-auto flex items-center justify-between pt-3">
-              <div className="flex items-center rounded-lg border border-gray-200">
+              <div className="flex items-center rounded-lg border border-line">
                 <button
                   type="button"
                   aria-label="Decrease quantity"
                   onClick={() => changeQuantity(item, item.quantity - 1)}
                   disabled={busyId === item.id || item.quantity <= 1}
-                  className="px-3 py-1.5 text-sm font-semibold text-gray-500 transition hover:text-[#1B4332] disabled:opacity-40"
+                  className="px-3 py-1.5 text-sm font-semibold text-muted-2 transition hover:text-primary disabled:opacity-40"
                 >
                   &minus;
                 </button>
-                <span className="w-8 text-center text-sm font-semibold text-gray-900">{item.quantity}</span>
+                <span className="w-8 text-center text-sm font-semibold text-ink">{item.quantity}</span>
                 <button
                   type="button"
                   aria-label="Increase quantity"
                   onClick={() => changeQuantity(item, item.quantity + 1)}
                   disabled={busyId === item.id || item.quantity >= item.product.stock}
-                  className="px-3 py-1.5 text-sm font-semibold text-gray-500 transition hover:text-[#1B4332] disabled:opacity-40"
+                  className="px-3 py-1.5 text-sm font-semibold text-muted-2 transition hover:text-primary disabled:opacity-40"
                 >
                   +
                 </button>
               </div>
-              <p className="text-base font-bold text-[#1B4332]">{formatPrice(item.lineTotal)}</p>
+              <p className="text-base font-bold text-primary">{formatPrice(item.lineTotal)}</p>
             </div>
           </div>
         </div>

@@ -23,16 +23,16 @@ export default async function DashboardOrdersPage() {
   return (
     <div className="space-y-6">
       <div>
-        <p className="text-sm font-semibold uppercase tracking-widest text-[#2D6A4F]">Dashboard</p>
-        <h1 className="mt-1 text-2xl font-bold text-gray-900">Orders</h1>
-        <p className="mt-1 text-sm text-gray-500">
+        <p className="text-sm font-semibold uppercase tracking-widest text-primary-bright">Dashboard</p>
+        <h1 className="mt-1 text-2xl font-bold text-ink">Orders</h1>
+        <p className="mt-1 text-sm text-muted-2">
           {orders.length} order{orders.length === 1 ? "" : "s"}
           {user.role === "FARMER" ? " for your products" : ""}
         </p>
       </div>
 
       {orders.length === 0 ? (
-        <p className="rounded-2xl border border-dashed border-gray-300 py-16 text-center text-gray-500">
+        <p className="rounded-2xl border border-dashed border-line-strong py-16 text-center text-muted-2">
           No orders yet.
         </p>
       ) : (
@@ -64,13 +64,13 @@ function OrderCard({
   const next = nextStatus(order.status);
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
-      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-gray-100 bg-gray-50/60 px-6 py-4">
+    <div className="overflow-hidden rounded-2xl border border-line bg-surface shadow-sm">
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line bg-surface-muted/60 px-6 py-4">
         <div>
-          <p className="text-sm font-semibold text-gray-900">
-            Order <span className="font-mono text-[#2D6A4F]">#{order.id.slice(0, 8)}</span>
+          <p className="text-sm font-semibold text-ink">
+            Order <span className="font-mono text-primary-bright">#{order.id.slice(0, 8)}</span>
           </p>
-          <p className="text-xs text-gray-500">
+          <p className="text-xs text-muted-2">
             {order.customerName} ·{" "}
             {new Date(order.createdAt).toLocaleDateString("en-IN", {
               day: "numeric",
@@ -85,7 +85,7 @@ function OrderCard({
           <span className={`rounded-full px-3 py-1 text-xs font-semibold ${status.className}`}>
             {status.label}
           </span>
-          <span className="text-base font-bold text-[#1B4332]">{formatPrice(order.total)}</span>
+          <span className="text-base font-bold text-primary">{formatPrice(order.total)}</span>
         </div>
       </div>
 
@@ -94,43 +94,43 @@ function OrderCard({
           <ul className="space-y-3">
             {order.items.map((item) => (
               <li key={item.id} className="flex items-center justify-between gap-4 text-sm">
-                <span className="text-gray-900">
+                <span className="text-ink">
                   {item.productName}
                   {item.farmerName && (
-                    <span className="text-gray-400"> · {item.farmerName}</span>
+                    <span className="text-faint"> · {item.farmerName}</span>
                   )}
-                  <span className="text-gray-400"> × {item.quantity}</span>
+                  <span className="text-faint"> × {item.quantity}</span>
                 </span>
-                <span className="font-medium text-gray-900">
+                <span className="font-medium text-ink">
                   {formatPrice(item.price * item.quantity)}
                 </span>
               </li>
             ))}
           </ul>
 
-          <dl className="mt-5 space-y-1 border-t border-gray-100 pt-4 text-sm">
+          <dl className="mt-5 space-y-1 border-t border-line pt-4 text-sm">
             <div className="flex justify-between">
-              <dt className="text-gray-500">Subtotal</dt>
-              <dd className="font-medium text-gray-900">{formatPrice(order.subtotal)}</dd>
+              <dt className="text-muted-2">Subtotal</dt>
+              <dd className="font-medium text-ink">{formatPrice(order.subtotal)}</dd>
             </div>
             <div className="flex justify-between">
-              <dt className="text-gray-500">Delivery</dt>
-              <dd className="font-medium text-gray-900">
+              <dt className="text-muted-2">Delivery</dt>
+              <dd className="font-medium text-ink">
                 {order.deliveryFee === 0 ? "Free" : formatPrice(order.deliveryFee)}
               </dd>
             </div>
             <div className="flex justify-between">
-              <dt className="text-gray-500">Payment</dt>
-              <dd className="font-medium text-gray-900">{formatPaymentMethod(order.paymentMethod)}</dd>
+              <dt className="text-muted-2">Payment</dt>
+              <dd className="font-medium text-ink">{formatPaymentMethod(order.paymentMethod)}</dd>
             </div>
             <div className="flex justify-between">
-              <dt className="text-gray-500">Deliver to</dt>
-              <dd className="max-w-xs text-right text-gray-900">{order.address}</dd>
+              <dt className="text-muted-2">Deliver to</dt>
+              <dd className="max-w-xs text-right text-ink">{order.address}</dd>
             </div>
             {order.phone && (
               <div className="flex justify-between">
-                <dt className="text-gray-500">Phone</dt>
-                <dd className="font-medium text-gray-900">{order.phone}</dd>
+                <dt className="text-muted-2">Phone</dt>
+                <dd className="font-medium text-ink">{order.phone}</dd>
               </div>
             )}
           </dl>

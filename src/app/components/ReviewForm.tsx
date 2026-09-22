@@ -77,8 +77,8 @@ export default function ReviewForm({
   }
 
   return (
-    <form onSubmit={submit} className="space-y-4 rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
-      <h3 className="text-base font-semibold text-gray-900">
+    <form onSubmit={submit} className="space-y-4 rounded-2xl border border-line bg-surface p-5 shadow-sm">
+      <h3 className="text-base font-semibold text-ink">
         {editing ? "Edit your review" : "Write a review"}
       </h3>
 
@@ -94,13 +94,13 @@ export default function ReviewForm({
               className="p-0.5"
             >
               <StarIcon
-                className={`h-6 w-6 ${n <= (hover || rating) ? "text-amber-400" : "text-gray-300"}`}
+                className={`h-6 w-6 ${n <= (hover || rating) ? "text-amber-400" : "text-faint"}`}
                 filled={n <= (hover || rating)}
               />
             </button>
           ))}
         </div>
-        <span className="text-sm text-gray-500">
+        <span className="text-sm text-muted-2">
           {rating > 0 ? `${rating} out of 5` : "Rate this product"}
         </span>
       </div>
@@ -111,7 +111,7 @@ export default function ReviewForm({
         rows={3}
         maxLength={1000}
         placeholder="Tell others what you thought of it. Freshness, taste, packaging…"
-        className="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm focus:border-[#2D6A4F] focus:outline-none focus:ring-1 focus:ring-[#2D6A4F]"
+        className="w-full rounded-xl border border-line px-3 py-2 text-sm focus:border-primary-bright focus:outline-none focus:ring-1 focus:ring-primary-bright"
       />
 
       {error && (
@@ -124,7 +124,7 @@ export default function ReviewForm({
         <button
           type="submit"
           disabled={busy}
-          className="rounded-xl bg-[#1B4332] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#2C6B4A] disabled:opacity-40"
+          className="rounded-xl bg-primary-solid px-4 py-2 text-sm font-semibold text-white transition hover:bg-primary-solid-light disabled:opacity-40"
         >
           {busy ? "Saving…" : editing ? "Update review" : "Post review"}
         </button>
@@ -139,12 +139,12 @@ export default function ReviewForm({
           </button>
         )}
         {canReview && !editing && (
-          <p className="text-xs text-gray-400">Verified purchase</p>
+          <p className="text-xs text-faint">Verified purchase</p>
         )}
       </div>
 
       {!canReview && (
-        <p className="text-xs text-gray-400">
+        <p className="text-xs text-faint">
           Reviews are only accepted from customers who bought this product.
         </p>
       )}

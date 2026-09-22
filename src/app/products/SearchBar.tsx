@@ -47,11 +47,11 @@ export default function SearchBar({
   return (
     <div
       className={`relative w-full sm:max-w-xs ${
-        focused ? "ring-2 ring-[#2D6A4F]/40" : ""
+        focused ? "ring-2 ring-primary-bright/40" : ""
       }`}
     >
       <svg
-        className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400"
+        className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-faint"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -72,14 +72,14 @@ export default function SearchBar({
         onBlur={() => setFocused(false)}
         placeholder="Search products…"
         aria-label="Search products"
-        className="w-full rounded-full border border-gray-200 bg-white py-2 pl-9 pr-8 text-sm text-gray-900 shadow-sm outline-none transition placeholder:text-gray-400 focus:border-[#2D6A4F]"
+        className="w-full rounded-full border border-line bg-surface py-2 pl-9 pr-8 text-sm text-ink shadow-sm outline-none transition placeholder:text-faint focus:border-primary-bright"
       />
       {value && (
         <button
           type="button"
           onClick={handleClear}
           aria-label="Clear search"
-          className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full p-1 text-gray-400 transition hover:bg-gray-100 hover:text-gray-600"
+          className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full p-1 text-faint transition hover:bg-surface-muted hover:text-muted"
         >
           <svg
             className="h-4 w-4"

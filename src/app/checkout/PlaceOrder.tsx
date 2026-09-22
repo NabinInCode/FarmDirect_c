@@ -81,7 +81,7 @@ export default function PlaceOrder(): JSX.Element {
         type="submit"
         onClick={handlePlaceOrder}
         disabled={placing}
-        className="w-full rounded-xl bg-[#1B4332] px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[#2C6B4A] disabled:cursor-not-allowed disabled:bg-gray-300"
+        className="w-full rounded-xl bg-primary-solid px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-primary-solid-light disabled:cursor-not-allowed disabled:bg-surface-muted"
       >
         {placing ? "Redirecting to payment..." : "Place order"}
       </button>

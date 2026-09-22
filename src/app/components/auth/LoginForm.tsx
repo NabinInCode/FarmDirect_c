@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { JSX, useState, FormEvent } from "react";
 
 const inputBase =
-    "w-full rounded-xl border border-gray-200 bg-gray-50/60 py-2.5 pl-11 pr-10 text-sm text-gray-900 placeholder:text-gray-400 outline-none transition focus:border-[#2D6A4F] focus:bg-white focus:ring-2 focus:ring-[#2D6A4F]/20";
+    "w-full rounded-xl border border-line bg-surface-muted/60 py-2.5 pl-11 pr-10 text-sm text-ink placeholder:text-faint outline-none transition focus:border-primary-bright focus:bg-surface focus:ring-2 focus:ring-primary-bright/20";
 
 export default function LoginForm({ redirectTo = "/account" }: { redirectTo?: string }): JSX.Element {
     const router = useRouter();
@@ -60,10 +60,10 @@ export default function LoginForm({ redirectTo = "/account" }: { redirectTo?: st
             )}
 
             <div>
-                <label className="mb-1.5 block text-sm font-medium text-gray-700">Email</label>
+                <label className="mb-1.5 block text-sm font-medium text-ink-muted">Email</label>
                 <div className="relative">
                     <svg
-                        className="pointer-events-none absolute left-3.5 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400"
+                        className="pointer-events-none absolute left-3.5 top-1/2 h-5 w-5 -translate-y-1/2 text-faint"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -84,10 +84,10 @@ export default function LoginForm({ redirectTo = "/account" }: { redirectTo?: st
             </div>
 
             <div>
-                <label className="mb-1.5 block text-sm font-medium text-gray-700">Password</label>
+                <label className="mb-1.5 block text-sm font-medium text-ink-muted">Password</label>
                 <div className="relative">
                     <svg
-                        className="pointer-events-none absolute left-3.5 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400"
+                        className="pointer-events-none absolute left-3.5 top-1/2 h-5 w-5 -translate-y-1/2 text-faint"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -108,7 +108,7 @@ export default function LoginForm({ redirectTo = "/account" }: { redirectTo?: st
                         type="button"
                         onClick={() => setShowPassword((v) => !v)}
                         aria-label={showPassword ? "Hide password" : "Show password"}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 transition hover:text-gray-600"
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-faint transition hover:text-muted"
                     >
                         {showPassword ? (
                             <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} aria-hidden>
@@ -126,18 +126,18 @@ export default function LoginForm({ redirectTo = "/account" }: { redirectTo?: st
             </div>
 
             <div className="flex items-center justify-between text-sm">
-                <label className="flex cursor-pointer items-center gap-2 text-gray-600">
+                <label className="flex cursor-pointer items-center gap-2 text-muted">
                     <input
                         type="checkbox"
                         checked={remember}
                         onChange={(e) => setRemember(e.target.checked)}
-                        className="h-4 w-4 rounded border-gray-300 accent-[#2D6A4F]"
+                        className="h-4 w-4 rounded border-line-strong accent-primary-bright"
                     />
                     Remember me
                 </label>
                 <Link
                     href="/forgot-password"
-                    className="font-semibold text-[#2D6A4F] transition hover:text-[#1B4332] hover:underline"
+                    className="font-semibold text-primary-bright transition hover:text-primary hover:underline"
                 >
                     Forgot password?
                 </Link>

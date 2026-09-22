@@ -44,8 +44,8 @@ export default async function DashboardOverviewPage() {
   return (
     <div className="space-y-8">
       <div>
-        <p className="text-sm font-semibold uppercase tracking-widest text-[#2D6A4F]">Dashboard</p>
-        <h1 className="mt-1 text-2xl font-bold text-gray-900">
+        <p className="text-sm font-semibold uppercase tracking-widest text-primary-bright">Dashboard</p>
+        <h1 className="mt-1 text-2xl font-bold text-ink">
           {user.role === "ADMIN" ? "Store overview" : "Your farm at a glance"}
         </h1>
       </div>
@@ -55,14 +55,14 @@ export default async function DashboardOverviewPage() {
           <Link
             key={card.label}
             href={card.href}
-            className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm transition hover:shadow-md"
+            className="rounded-2xl border border-line bg-surface p-5 shadow-sm transition hover:shadow-md"
           >
-            <p className="text-xs font-semibold uppercase tracking-wider text-gray-500">
+            <p className="text-xs font-semibold uppercase tracking-wider text-muted-2">
               {card.label}
             </p>
-            <p className="mt-2 text-2xl font-bold text-gray-900">{card.value}</p>
+            <p className="mt-2 text-2xl font-bold text-ink">{card.value}</p>
             {card.note && (
-              <p className={`mt-1 text-xs font-medium ${card.warn ? "text-red-600" : "text-gray-500"}`}>
+              <p className={`mt-1 text-xs font-medium ${card.warn ? "text-red-600" : "text-muted-2"}`}>
                 {card.note}
               </p>
             )}
@@ -72,19 +72,19 @@ export default async function DashboardOverviewPage() {
 
       <section>
         <div className="mb-4 flex items-center justify-between">
-          <h2 className="text-lg font-bold text-gray-900">Recent orders</h2>
-          <Link href="/dashboard/orders" className="text-sm font-medium text-[#2D6A4F] hover:underline">
+          <h2 className="text-lg font-bold text-ink">Recent orders</h2>
+          <Link href="/dashboard/orders" className="text-sm font-medium text-primary-bright hover:underline">
             View all
           </Link>
         </div>
 
         {recentOrders.length === 0 ? (
-          <p className="rounded-2xl border border-dashed border-gray-300 py-12 text-center text-gray-500">
+          <p className="rounded-2xl border border-dashed border-line-strong py-12 text-center text-muted-2">
             No orders yet.
           </p>
         ) : (
-          <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
-            <ul className="divide-y divide-gray-100">
+          <div className="overflow-hidden rounded-2xl border border-line bg-surface shadow-sm">
+            <ul className="divide-y divide-line">
               {recentOrders.slice(0, 8).map((order) => {
                 const status = statusStyles[order.status]
                   ? statusStyles[order.status]
@@ -92,10 +92,10 @@ export default async function DashboardOverviewPage() {
                 return (
                   <li key={order.id} className="flex flex-wrap items-center justify-between gap-3 px-5 py-4">
                     <div>
-                      <p className="text-sm font-semibold text-gray-900">
-                        Order <span className="font-mono text-[#2D6A4F]">#{order.id.slice(0, 8)}</span>
+                      <p className="text-sm font-semibold text-ink">
+                        Order <span className="font-mono text-primary-bright">#{order.id.slice(0, 8)}</span>
                       </p>
-                      <p className="text-xs text-gray-500">
+                      <p className="text-xs text-muted-2">
                         {order.customerName} · {new Date(order.createdAt).toLocaleDateString("en-IN", {
                           day: "numeric",
                           month: "short",
@@ -107,7 +107,7 @@ export default async function DashboardOverviewPage() {
                       <span className={`rounded-full px-3 py-1 text-xs font-semibold ${status.className}`}>
                         {status.label}
                       </span>
-                      <span className="text-sm font-bold text-[#1B4332]">{formatPrice(order.total)}</span>
+                      <span className="text-sm font-bold text-primary">{formatPrice(order.total)}</span>
                     </div>
                   </li>
                 );

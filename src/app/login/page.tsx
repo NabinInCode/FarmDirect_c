@@ -25,18 +25,18 @@ export default async function LoginPage({
             quoteAuthor="— Sarah M., loyal customer since 2024"
         >
             <div>
-                <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+                <h1 className="text-2xl font-bold tracking-tight text-ink sm:text-3xl">
                     Log in to your account
                 </h1>
-                <p className="mt-2 text-sm text-gray-500">Enter your credentials to continue</p>
+                <p className="mt-2 text-sm text-muted-2">Enter your credentials to continue</p>
 
                 <LoginForm redirectTo={redirectTo} />
 
-                <p className="mt-6 text-center text-sm text-gray-600">
+                <p className="mt-6 text-center text-sm text-muted">
                     Don&apos;t have an account?{" "}
                     <Link
                         href="/signup"
-                        className="font-semibold text-[#2D6A4F] transition hover:text-[#1B4332] hover:underline"
+                        className="font-semibold text-primary-bright transition hover:text-primary hover:underline"
                     >
                         Sign up
                     </Link>{" "}

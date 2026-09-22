@@ -51,17 +51,17 @@ export default async function EditProductPage({
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center gap-2 text-sm text-gray-500">
-        <Link href="/dashboard/products" className="hover:text-[#2D6A4F]">
+      <div className="flex items-center gap-2 text-sm text-muted-2">
+        <Link href="/dashboard/products" className="hover:text-primary-bright">
           Products
         </Link>
         <span aria-hidden>/</span>
-        <span className="truncate text-gray-900">{product.name}</span>
+        <span className="truncate text-ink">{product.name}</span>
       </div>
 
       <div>
-        <h1 className="text-2xl font-bold text-gray-900">Edit product</h1>
-        <p className="mt-1 text-sm text-gray-500">Update the details for {product.name}.</p>
+        <h1 className="text-2xl font-bold text-ink">Edit product</h1>
+        <p className="mt-1 text-sm text-muted-2">Update the details for {product.name}.</p>
       </div>
 
       <ProductForm
