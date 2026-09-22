@@ -26,9 +26,9 @@ function productWhere(p: CatalogParams): Prisma.ProductWhereInput {
   }
   if (p.q && p.q.trim()) {
     where.OR = [
-      { name: { contains: p.q.trim() } },
-      { description: { contains: p.q.trim() } },
-      { category: { name: { contains: p.q.trim() } } },
+      { name: { contains: p.q.trim(), mode: "insensitive" } },
+      { description: { contains: p.q.trim(), mode: "insensitive" } },
+      { category: { name: { contains: p.q.trim(), mode: "insensitive" } } },
     ];
   }
   return where;

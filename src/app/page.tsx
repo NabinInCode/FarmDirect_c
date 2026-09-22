@@ -1,17 +1,21 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const features = [
   {
     title: "Fresh harvest",
     description: "Seasonal produce picked at peak quality and delivered with care.",
+    image: "/fresh harvest.png",
   },
   {
     title: "Farmer direct",
     description: "Support local growers and enjoy transparent sourcing from farm to table.",
+    image: "/farm direct.png",
   },
   {
     title: "Healthy living",
     description: "Nutritious groceries designed for everyday wellness and better meals.",
+    image: "/healthy living.jpg",
   },
 ];
 
@@ -110,10 +114,20 @@ export default function Home() {
 
         <div className="grid gap-6 md:grid-cols-3">
           {features.map((feature) => (
-            <div key={feature.title} className="rounded-2xl border border-line bg-surface p-6 shadow-sm">
-              <div className="mb-4 h-12 w-12 rounded-xl bg-primary-soft" />
-              <h3 className="text-xl font-semibold text-ink">{feature.title}</h3>
-              <p className="mt-3 text-muted">{feature.description}</p>
+            <div key={feature.title} className="overflow-hidden rounded-2xl border border-line bg-surface shadow-sm">
+              <div className="relative h-48">
+                <Image
+                  src={feature.image}
+                  alt={feature.title}
+                  fill
+                  sizes="(min-width: 768px) 33vw, 100vw"
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-semibold text-ink">{feature.title}</h3>
+                <p className="mt-3 text-muted">{feature.description}</p>
+              </div>
             </div>
           ))}
         </div>
